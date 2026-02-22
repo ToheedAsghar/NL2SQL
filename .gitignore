@@ -1,0 +1,64 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging / build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+pip-wheel-metadata/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# Type checker / linters
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Editor / OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Project cache/output
+cache/
+
+# Local databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Keys / local secrets
+*.pem
+*.key
+secrets.yaml
+secrets.json
