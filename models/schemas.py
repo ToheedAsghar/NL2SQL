@@ -28,14 +28,14 @@ class TableMetaData(BaseModel):
 
 # --- discovery --- #
 
-class ScoredTables(BaseModel):
+class ScoredTable(BaseModel):
     table: TableMetaData
     score: float
     found_by: list[str] = Field(default_factory=list)
 
 class DiscoveryResult(BaseModel):
     top_tables: list[TableMetaData]
-    scored_tables: list[ScoredTables]
+    scored_tables: list[ScoredTable]
 
 # --- Schema Formatter --- #
 
