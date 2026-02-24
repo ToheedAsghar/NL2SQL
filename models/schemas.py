@@ -26,6 +26,11 @@ class TableMetaData(BaseModel):
     columns: list[ColumnMetaData] = Field(default_factory=list)
     comments: Optional[str] = None
 
+class GateResult(BaseModel):
+    passed: bool
+    tables: list[TableMetaData]
+    reason: Optional[str] = None
+
 # --- discovery --- #
 
 class ScoredTable(BaseModel):
