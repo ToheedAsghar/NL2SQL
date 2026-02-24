@@ -66,7 +66,7 @@ class DiscoveryAgent:
         logger.info('Discover Agent: ranked %d tables, top-5 = %s', len(merged), [s.table.table_name for s in merged[:5]])
 
         return DiscoveryResult(
-            top_tables=[s.table for s in merged[:5]]
+            top_tables=[s.table for s in merged[:5]],
             scored_tables=merged
         )
 
@@ -93,7 +93,6 @@ class DiscoveryAgent:
             agg[name]["score"] += score + WEIGHTS["semantic"]
             if score > 0:
                 agg[name]["found_by"].append("semantic")
-
         
         for name, score in fk.items():
             agg[name]["score"] += score + WEIGHTS["fk_graph"]
@@ -116,4 +115,3 @@ class DiscoveryAgent:
         )
 
         return ranked
-
