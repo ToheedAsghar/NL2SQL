@@ -79,6 +79,12 @@ class ValidationResult(BaseModel):
     passed: bool
     retry_context: Optional[str] = None
 
+# --- Explainer Output --- #
+class ExplainerOutput(BaseModel):
+    explanation: str
+    safety_report: str
+    optimization_hints: str
+
 # --- Final Output --- #
 class FinalOutput(BaseModel):
     sql: str
