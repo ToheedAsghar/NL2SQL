@@ -1,9 +1,9 @@
 """
 Models/State for data flowing between all pipeline components.
 """
+from __future__ import annotations
 
 import operator
-from __future__ import annotations
 from pydantic import BaseModel, Field
 from typing import Optional, Annotated
 from typing_extensions import TypedDict

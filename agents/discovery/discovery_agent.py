@@ -14,9 +14,9 @@ import logging
 import asyncio
 from collections import defaultdict
 
-from discovery.keyword_agent import KeywordAgent
-from discovery.fk_graph_agent import FKGraphAgent
-from discovery.semantic_agent import SemanticAgent
+from .keyword_agent import KeywordAgent
+from .fk_graph_agent import FKGraphAgent
+from .semantic_agent import SemanticAgent
 from config.settings import KEYWORD_PRE_FILTER_TOP_N
 from models.schemas import TableMetaData, DiscoveryResult, ScoredTable
 

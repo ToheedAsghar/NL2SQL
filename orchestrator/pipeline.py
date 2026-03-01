@@ -14,15 +14,15 @@ ORCHESTRATOR - LANGGRAPH
 from models.schemas import GraphState
 from langgraph.graph import StateGraph, END
 
-from nodes import gate_node
-from nodes import load_schema
-from nodes import explain_node
-from nodes import should_retry
-from nodes import validate_node
-from nodes import discovery_node
-from nodes import format_schema_node
-from nodes import generate_sql_node
-from nodes import security_filter_node
+from .nodes import gate_node
+from .nodes import load_schema
+from .nodes import explain_node
+from .nodes import should_retry
+from .nodes import validate_node
+from .nodes import discovery_node
+from .nodes import format_schema_node
+from .nodes import generate_sql_node
+from .nodes import security_filter_node
 
 def build_graph() -> StateGraph:
     builder = StateGraph(GraphState)

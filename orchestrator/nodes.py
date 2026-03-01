@@ -38,7 +38,7 @@ async def load_schema(state: GraphState) -> dict:
     return {"tables": tables, "attempt": 1}
 
 async def security_filter_node(state: GraphState) -> dict:
-    approved = await security_filter.filter(state["tables"]))
+    approved = await security_filter.filter(state["tables"])
     approved_names = {t.table_name for t in approved}
 
     logger.info("SecurityFilterNode: %d tables approved", len(approved))

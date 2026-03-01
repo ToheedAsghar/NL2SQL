@@ -50,7 +50,7 @@ class SchemaFormatterAgent(): # BaseAgent
     def parse_response(self, raw: str) -> FormattedSchema:
         return FormattedSchema(
             content=raw,
-            table_names=[]
+            table_names=[],
             token_estimate=len(raw.split())
         )
     

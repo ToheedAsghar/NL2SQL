@@ -13,6 +13,7 @@ Each agent implements:
 
 import logging
 from abc import ABC, abstractmethod
+from typing import Any
 from langchain_openai import ChatOpenAI
 from config.settings import LLMProvider, PRIMARY_PROVIDER
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage

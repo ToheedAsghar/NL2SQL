@@ -56,10 +56,10 @@ class DatabaseConnector:
                         ColumnMetaData(
                             column_name=col_name,
                             data_type = col["type"] or "TEXT",
-                            nullabe = col['notnull'],
+                            nullable = col['notnull'],
                             is_primary_key=col_name in pk_cols,
                             is_foreign_key=fk_target is not None,
-                            reference_table = fk_target[0] if fk_target else None
+                            reference_table = fk_target[0] if fk_target else None,
                             reference_column=fk_target[1] if fk_target else None
                         )
                     )

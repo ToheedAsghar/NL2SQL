@@ -30,13 +30,13 @@ class LLMProvider:
 
 # providers
 OPENAI_PROVIDER = LLMProvider(
-    api_key=os.getenv('OPENAI_API_KEY', '')
-    base_url=os.getenv('OPENAI_BASE_URL', 'https://openrouter.ai/api/v1')
+    api_key=os.getenv('OPENAI_API_KEY', ''),
+    base_url=os.getenv('OPENAI_BASE_URL', 'https://openrouter.ai/api/v1'),
     default_model=os.getenv('OPENAI_MODEL', 'openai/gpt-4o-mini')
 )
 
 GEMINI_PROVIDER = LLMProvider(
-    api_key=os.getenv('GEMINI_API_KEY', '')
+    api_key=os.getenv('GEMINI_API_KEY', ''),
     base_url=os.getenv("GEMINI_BASE_URL", "https://openrouter.ai/api/v1"),
     default_model=os.getenv("GEMINI_MODEL", "google/gemini-2.5-flash"),
 )
@@ -52,7 +52,7 @@ DB_PATH: str = os.getenv('DB_PATH', '')
 # Schema Cache
 CACHE_DIR: str = os.path.expanduser("~/.sql_generator")
 CACHE_FILE: str = os.path.join(CACHE_DIR, "schema_cache.json")
-CACHE_TTL_HOURS: int = int(os.getenv(CACHE_TTL_HOURS, "24"))
+CACHE_TTL_HOURS: int = int(os.getenv("CACHE_TTL_HOURS", "24"))
 
 # Pipleline
 N_CANDIDATES: int = int(os.getenv('N_CANDIDATES', '3'))
