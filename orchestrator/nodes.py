@@ -2,6 +2,7 @@ import logging
 
 from filters.gate import GateLayer
 from db.connector import DatabaseConnector
+from cache.schema_cache import SchemaCache
 from filters.security_filter import SecurityFilter
 from models.schemas import GraphState, FinalOutput
 from agents.query_generator import QueryGeneratorAgent
@@ -14,9 +15,10 @@ from agents.explainer.explainer_agent import ExplainerAgent
 
 logger = logging.getLogger(__name__)
 
+cache = SchemaCache()
+gate_layer = GateLayer()
 connector = DatabaseConnector()
 security_filter=SecurityFilter(connector)
-gate_layer = GateLayer()
 
 # --- 5 agents --- # 
 discovery_agent = DiscoveryAgent()
@@ -27,9 +29,12 @@ explainer_agent = ExplainerAgent()
 
 async def load_schema(state: GraphState) -> dict:
     """Load Tables from cache or Introspect the database"""
+    tables = cache.get(DB_PATH)
+    
+    if tables is None:
+        tables = await connector.introspect()
+        cache.set(DB_PATH, tables)
 
-    # implementation remaining of cache
-    tables = await connector.introspect()
     return {"tables": tables, "attempt": 1}
 
 async def security_filter_node(state: GraphState) -> dict:

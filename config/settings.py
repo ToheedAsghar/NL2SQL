@@ -49,6 +49,11 @@ EMBEDDING_PROVIDER: LLMProvider = OPENAI_PROVIDER
 DB_TYPE: str = os.getenv('DB_TYPE', 'sqlite')
 DB_PATH: str = os.getenv('DB_PATH', '')
 
+# Schema Cache
+CACHE_DIR: str = os.path.expanduser("~/.sql_generator")
+CACHE_FILE: str = os.path.join(CACHE_DIR, "schema_cache.json")
+CACHE_TTL_HOURS: int = int(os.getenv(CACHE_TTL_HOURS, "24"))
+
 # Pipleline
 N_CANDIDATES: int = int(os.getenv('N_CANDIDATES', '3'))
 MAX_RETRIES: int = int(os.getenv('MAX_RETRIES', '2'))
