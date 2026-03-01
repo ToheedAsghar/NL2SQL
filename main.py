@@ -6,20 +6,38 @@ Usage:
     python main.py (interactive mode)
 """
 
+import warnings
+# Suppress Pydantic V1 compatibility warning
+warnings.filterwarnings("ignore", message="Core Pydantic V1 functionality isn't compatible with Python 3.14 or greater.")
+
 import asyncio
 import sys
+import os
 import logging
+from datetime import datetime
 from orchestrator.pipeline import graph
 
 # Logging setup 
 
+# Create logs directory if it doesn't exist
+logs_dir = os.path.join(os.path.dirname(__file__), "logs")
+os.makedirs(logs_dir, exist_ok=True)
+
+# Generate log filename with timestamp
+log_filename = os.path.join(logs_dir, f"nl2sql_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+
+# Configure logging to write to file
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s  %(name)-30s  %(levelname)-5s  %(message)s",
     datefmt="%H:%M:%S",
+    handlers=[
+        logging.FileHandler(log_filename)
+    ]
 )
 
 logger = logging.getLogger("main")
+logger.info(f"Logging to: {log_filename}")
 
 def print_output(result) -> None:
     """Pretty-print the final output to the terminal."""
