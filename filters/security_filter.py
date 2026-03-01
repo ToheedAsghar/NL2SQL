@@ -20,7 +20,7 @@ class SecurityFilter:
     async def filter(self, tables: list[TableMetaData]) -> list[TableMetaData]:
         logger.info("Security Filter: checking privileges for %d tables", len(tables))
 
-        if DB_TYPE == 'SQLite':
+        if DB_TYPE.lower() == 'sqlite':
             logger.info('SecurityFilter: SQLite mode - all %d tables pass', len(tables))
             return tables
     

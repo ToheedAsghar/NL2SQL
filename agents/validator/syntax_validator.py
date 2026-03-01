@@ -51,7 +51,7 @@ class SyntaxValidator(BaseAgent):
         
         # check through LLM
         messages = self.build_prompt(sql=sql)
-        raw = self.call_llm(messages, temperature=0.0, max_tokens=100)
+        raw = await self.call_llm(messages, temperature=0.0, max_tokens=100)
         return self.parse_response(raw)
     
     def parse_response(self, raw: str) -> ValidatorCheckResult:

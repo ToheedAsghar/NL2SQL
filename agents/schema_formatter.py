@@ -6,6 +6,7 @@ TAKES TOP-K TABLES AND FORMATS THEM INTO A DDL-STYLE SCHEMA PROMPT
 
 import logging
 from models.schemas import TableMetaData, FormattedSchema
+from agents.base_agent import BaseAgent
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +15,7 @@ Given raw table metadata, produce a clean, compact DDL-style schema that will be
 Include table names, column names, data types, primary keys, foreign keys, and comments. Be concise but complete.
 Output ONLY the formatted schema — no explanation."""
 
-class SchemaFormatterAgent(): # BaseAgent
+class SchemaFormatterAgent(BaseAgent):
     def build_prompt(
             self, tables: list[TableMetaData], **_
     ) -> list[dict[str, str]]:

@@ -85,28 +85,28 @@ class DiscoveryAgent:
             if name not in {t.table_name for t in tables}:
                 continue
 
-            agg[name]["score"] += score + WEIGHTS["keyword"]
+            agg[name]["score"] += score * WEIGHTS["keywords"]
             if score > 0:
                 agg[name]["found_by"].append("keyword")
 
         for name, score in sem.items():
-            agg[name]["score"] += score + WEIGHTS["semantic"]
+            agg[name]["score"] += score * WEIGHTS["semantic"]
             if score > 0:
                 agg[name]["found_by"].append("semantic")
         
         for name, score in fk.items():
-            agg[name]["score"] += score + WEIGHTS["fk_graph"]
+            agg[name]["score"] += score * WEIGHTS["fk_graph"]
             if score > 0:
                 agg[name]["found_by"].append("fk_graph")
 
-        table_map = {t.table_name for t in tables}
+        table_map = {t.table_name: t for t in tables}
         
         ranked = sorted(
             [
                 ScoredTable(
                     table=table_map[name],
                     score=round(data['score'], 4),
-                    found_by=list(set(data['fuond_by'])),
+                    found_by=list(set(data['found_by'])),
                 )
                 for name, data in agg.items() if name in table_map
             ],

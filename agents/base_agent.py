@@ -55,7 +55,7 @@ class BaseAgent(ABC):
 
         response = await llm.ainvoke(lc_messages)
 
-        if response.usages_metadata:
+        if response.usage_metadata:
             logger.debug("%s ← LLM (prompt=%d, completion=%d tokens)",
                 self.__class__.__name__,
                 response.usage_metadata.get("input_tokens", 0),

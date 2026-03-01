@@ -11,6 +11,7 @@ class LLMProvider:
     api_key: str
     base_url: str
     default_model: str
+    embedding_model: str = "openai/text-embedding-3-small"
 
     def chat_model(self, *, temperature:float = 0.3, max_tokens: int = 2048) -> ChatOpenAI:
         return ChatOpenAI(
@@ -23,7 +24,7 @@ class LLMProvider:
 
     def embeddings_model(self) -> OpenAIEmbeddings:
         return OpenAIEmbeddings(
-            model=self.default_model,
+            model=self.embedding_model,
             api_key=self.api_key,
             base_url=self.base_url 
         )
@@ -32,7 +33,8 @@ class LLMProvider:
 OPENAI_PROVIDER = LLMProvider(
     api_key=os.getenv('OPENAI_API_KEY', ''),
     base_url=os.getenv('OPENAI_BASE_URL', 'https://openrouter.ai/api/v1'),
-    default_model=os.getenv('OPENAI_MODEL', 'openai/gpt-4o-mini')
+    default_model=os.getenv('OPENAI_MODEL', 'openai/gpt-4o-mini'),
+    embedding_model=os.getenv('OPENAI_EMBEDDING_MODEL', 'openai/text-embedding-3-small')
 )
 
 GEMINI_PROVIDER = LLMProvider(

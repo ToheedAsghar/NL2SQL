@@ -47,7 +47,7 @@ class SemanticAgent:
 
         texts = [user_query] + [self._table_to_text(t) for t in tables]
 
-        all_embeddings = self.embeddings.aembed_documents(texts)
+        all_embeddings = await self.embeddings.aembed_documents(texts)
 
         query_emb = all_embeddings[0]
         table_embs = all_embeddings[1:]

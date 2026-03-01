@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 class DatabaseConnector:
     """Generic Connector - Currently Supports SQLite"""
 
-    def __init__(self, db_path: str = DB_TYPE) -> None:
+    def __init__(self, db_path: str = DB_PATH) -> None:
         self.db_path = db_path
 
         if not os.path.exists(self.db_path):
@@ -56,7 +56,7 @@ class DatabaseConnector:
                         ColumnMetaData(
                             column_name=col_name,
                             data_type = col["type"] or "TEXT",
-                            nullable = col['notnull'],
+                            nullable = not col['notnull'],
                             is_primary_key=col_name in pk_cols,
                             is_foreign_key=fk_target is not None,
                             reference_table = fk_target[0] if fk_target else None,
@@ -85,7 +85,7 @@ class DatabaseConnector:
         """
 
         async with db.execute(query) as cursor:
-            rows = await cursor.fetch_all()
+            rows = await cursor.fetchall()
             return [row["name"] for row in rows]
         
     async def _fetch_columns(self, db, table_name: str) -> list[dict]:
@@ -99,8 +99,9 @@ class DatabaseConnector:
             return {row["name"] for row in rows if row["pk"]}
         
     async def _fetch_foreign_keys(self, db, table_name: str) -> dict[str, tuple[str, str]]:
-        async with db.execute(f"PRAGMA foreign_key_list('{table_name})") as cursor:
-            rows = cursor.fetchall()
+        async with db.execute(f"PRAGMA foreign_key_list('{table_name}')") as cursor:
+            rows = await cursor.fetchall()
             return {
                 row["from"]: (row["table"], row["to"]) for row in rows
             }
+ 

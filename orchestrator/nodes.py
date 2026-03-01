@@ -44,7 +44,7 @@ async def security_filter_node(state: GraphState) -> dict:
     logger.info("SecurityFilterNode: %d tables approved", len(approved))
 
     return {
-        "security_approved": approved_names
+        "security_passed": approved_names
     }
 
 async def discovery_node(state: GraphState) -> dict:
@@ -69,7 +69,7 @@ async def gate_node(state: GraphState) -> dict:
     }
 
 async def format_schema_node(state: GraphState) -> dict:
-    formatted = formatter_agent.format(state['gated_tables'])
+    formatted = await formatter_agent.format(state['gated_tables'])
     return {
         'formatted_schema': formatted
     }
@@ -120,7 +120,7 @@ def should_retry(state: GraphState) -> str:
 
 async def explain_node(state: GraphState) -> dict:
     best = state['validation'].best_candidate
-    output = explainer_agent.explain(
+    output = await explainer_agent.explain(
         best, state['validation'].all_results,
         state['user_query']
     )

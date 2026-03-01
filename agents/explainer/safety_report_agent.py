@@ -24,7 +24,7 @@ class SafetyReportAgent:
         
         lines = ["Security & Quality Report", " "*36]
 
-        for check in sorted(winning.checks, key=lambda c: CHECK_ORDER.index(c.check_name)):
+        for check in sorted(winning.checks, key=lambda c: CHECK_ORDER.index(c.check_name.lower())):
             if check.passed and check.score==1.0:
                 icon = ICONS['passed']
             elif check.passed and check.score<1.0:

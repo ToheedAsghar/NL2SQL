@@ -79,7 +79,7 @@ class QueryGeneratorAgent(BaseAgent):
 
         candidates = await asyncio.gather(
             *[
-                self._generate_one(schema, user_query, t, v, retry_context) for t, v in zip(temps, varients)
+                self._generator_one(schema, user_query, t, v, retry_context) for t, v in zip(temps, varients)
             ]
         )
 
