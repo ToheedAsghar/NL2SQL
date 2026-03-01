@@ -1,3 +1,6 @@
+
+<div align="center">
+
 # NL2SQL - Multi-Agent Natural Language to SQL System
 
 [![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
@@ -7,22 +10,24 @@
 
 A sophisticated **multi-agent orchestration system** that converts natural language queries into safe, optimized SQL using LangGraph and OpenRouter LLMs. Built with security, performance, and explainability at its core.
 
+</div>
+
 ---
 
 ## Key Features
 
-- 🎯 **Multi-Agent Architecture**: 8 specialized agents working in harmony (Discovery, Security, Schema Formatting, Query Generation, Validation, Explanation)
-- 🔒 **Security-First**: Built-in SQL injection prevention, dangerous operation filtering, and security scoring
-- 🧩 **Smart Table Discovery**: Multi-signal ranking (keyword matching, semantic search, foreign key graph analysis)
-- ⚡ **Performance Validation**: Query optimization checks and performance score reporting
-- 📊 **Explainability**: Human-readable explanations for every generated query
-- 🔄 **Async Architecture**: Non-blocking operations throughout the pipeline
-- 💾 **Schema Caching**: Intelligent caching to reduce database introspection overhead
-- 📝 **Comprehensive Logging**: Detailed file-based logging for debugging and monitoring
+- **Multi-Agent Architecture**: 8 specialized agents working in harmony (Discovery, Security, Schema Formatting, Query Generation, Validation, Explanation)
+- **Security-First**: Built-in SQL injection prevention, dangerous operation filtering, and security scoring
+- **Smart Table Discovery**: Multi-signal ranking (keyword matching, semantic search, foreign key graph analysis)
+- **Performance Validation**: Query optimization checks and performance score reporting
+- **Explainability**: Human-readable explanations for every generated query
+- **Async Architecture**: Non-blocking operations throughout the pipeline
+- **Schema Caching**: Intelligent caching to reduce database introspection overhead
+- **Comprehensive Logging**: Detailed file-based logging for debugging and monitoring
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -459,7 +464,7 @@ pre-commit install
 
 ---
 
-## 🛣️ Roadmap
+## Roadmap
 
 - [ ] **Multi-database support**: PostgreSQL, MySQL, SQL Server
 - [ ] **Query execution**: Safely execute generated queries and return results
@@ -474,7 +479,7 @@ pre-commit install
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
