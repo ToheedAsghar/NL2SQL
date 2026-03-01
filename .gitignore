@@ -49,7 +49,10 @@ logs/
 # Project cache/output
 cache/
 
-# Local databases
+# Large database files (download separately - see DATA_SETUP.md)
+spider/
+data/
+archive.zip
 *.sqlite
 *.sqlite3
 *.db
