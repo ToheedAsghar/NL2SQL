@@ -9,7 +9,7 @@ import asyncio
 import logging
 from agents.base_agent import BaseAgent
 from config.settings import N_CANDIDATES, CANDIDATE_TEMPERATURES
-from models.schemas import FormattedSchema, GenerationResult, SQLCandidate
+from models.schemas import ChatMessage, FormattedSchema, GenerationResult, SQLCandidate
 
 logger = logging.getLogger(__name__)
 
@@ -35,8 +35,20 @@ class QueryGeneratorAgent(BaseAgent):
             user_query: str,
             prompt_varient: str = PROMPT_VARIENT[0],
             retry_content: str | None = None,
+            chat_history: list[ChatMessage] | None = None,
             **_,
         ) -> list[dict[str, str]]:
+
+        messages: list[dict[str, str]] = [
+            {"role": "system", "content": SYSTEM_PROMPT}
+        ]
+
+        if chat_history:
+            for turn in chat_history[-6:]:
+                messages.append({
+                    "role": turn["role"], "content": turn["content"]
+                })
+        
         user_content = (
             f"Schema: \n{schema.content}\n\n"
             f"{prompt_varient}\n{user_query}"
@@ -46,10 +58,12 @@ class QueryGeneratorAgent(BaseAgent):
             user_content += (
                 f"\n\nPrevious attempt failed. Fix these : \n{retry_content}"
             )
-        return [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_content},
-        ]
+        
+        messages.append({"role": "user", "content": user_content})
+
+        logger.info("QueryGeneratorAgent: built promtpt with %d message history", len(messages))
+
+        return messages
     
     def parse_response(self, raw: str) -> str:
         raw = raw.strip()
@@ -67,6 +81,7 @@ class QueryGeneratorAgent(BaseAgent):
             user_query: str,
             n_candidates: int = N_CANDIDATES,
             retry_context: str | None = None,
+            chat_history: list[ChatMessage] | None = None,
     ) -> GenerationResult:
         """FIRE N LLM CALLS PARALLELY"""
 
@@ -79,7 +94,7 @@ class QueryGeneratorAgent(BaseAgent):
 
         candidates = await asyncio.gather(
             *[
-                self._generator_one(schema, user_query, t, v, retry_context) for t, v in zip(temps, varients)
+                self._generator_one(schema, user_query, t, v, retry_context, chat_history) for t, v in zip(temps, varients)
             ]
         )
 
@@ -96,9 +111,10 @@ class QueryGeneratorAgent(BaseAgent):
             temperature: float,
             prompt_varient: str,
             retry_context: str | None,
+            chat_history: list[ChatMessage] | None = None,
     ) -> SQLCandidate:
         messages = self.build_prompt(
-            schema=schema, user_query=user_query, prompt_varient=prompt_varient, retry_content=retry_context
+            schema=schema, user_query=user_query, prompt_varient=prompt_varient, retry_content=retry_context, chat_history=chat_history
         )
 
         raw = await self.call_llm(messages=messages, temperature=temperature)

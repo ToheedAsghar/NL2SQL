@@ -82,7 +82,8 @@ async def generate_sql_node(state: GraphState) -> dict:
     generation = await generator_agent.generate(
         state['formatted_schema'],
         state['user_query'],
-        retry_context=state.get('retry_context')
+        retry_context=state.get('retry_context'),
+        chat_history=state.get('chat_history'),
     )
 
     return {
@@ -122,8 +123,12 @@ async def explain_node(state: GraphState) -> dict:
     best = state['validation'].best_candidate
     output = await explainer_agent.explain(
         best, state['validation'].all_results,
-        state['user_query']
+        state['user_query'],
     )
+
+    history = list(state.get('chat_history') or [])
+    history.append({"role": "user", "content": state['user_query']})
+    history.append({"role": "assistant", "content": best.sql})
 
     return {
         'output': FinalOutput(
@@ -132,5 +137,6 @@ async def explain_node(state: GraphState) -> dict:
             safety_report=output.safety_report,
             optimization_hints=output.optimization_hints,
             candidate_scores=state["validation"].all_results,
-        )
+        ),
+        'chat_history': history,
     }
