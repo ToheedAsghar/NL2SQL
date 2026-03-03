@@ -39,6 +39,8 @@ logging.basicConfig(
 logger = logging.getLogger("main")
 logger.info(f"Logging to: {log_filename}")
 
+config = {"configurable": {'thread_id': 'user'}}
+
 def print_output(result) -> None:
     """Pretty-print the final output to the terminal."""
     print("\n" + " " * 60)
@@ -61,17 +63,15 @@ def print_output(result) -> None:
 
 async def run_query(query: str) -> None:
     """Invoke the LangGraph pipeline and print results."""
-    final_state = await graph.ainvoke({"user_query": query})
+    final_state = await graph.ainvoke({"user_query": query}, config)
     print_output(final_state["output"])
 
 async def main() -> None:
-    # CLI argument mode
     if len(sys.argv) > 1:
         query = " ".join(sys.argv[1:])
         await run_query(query)
         return
     
-    # Interactive mode
     print("SQL Generator — Multi-Agent System (LangGraph)")
     print("Type your question (or 'quit' to exit)\n")
 

@@ -13,6 +13,7 @@ ORCHESTRATOR - LANGGRAPH
 
 from models.schemas import GraphState
 from langgraph.graph import StateGraph, END
+from langgraph.checkpoint.memory import MemorySaver
 
 from .nodes import gate_node
 from .nodes import load_schema
@@ -62,7 +63,8 @@ def build_graph() -> StateGraph:
     # end
     builder.add_edge("explain", END)
 
-    # compile
-    return builder.compile()
+    # compile with in-memory checkpointer so chat_history persists across turns
+    memory = MemorySaver()
+    return builder.compile(checkpointer=memory)
 
 graph = build_graph()

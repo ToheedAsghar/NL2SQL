@@ -93,6 +93,10 @@ class FinalOutput(BaseModel):
     optimization_hints: str
     candidate_scores: list[CandidateValidationResult]
 
+class ChatMessage(TypedDict):
+    role: str
+    content: str
+
 # --- Graph State --- #
 
 class GraphState(TypedDict, total=False):
@@ -111,3 +115,6 @@ class GraphState(TypedDict, total=False):
     retry_context: Optional[str]
     attempt: int
     output: FinalOutput
+    
+    # chat history
+    chat_history: list[ChatMessage]

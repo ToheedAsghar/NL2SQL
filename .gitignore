@@ -42,10 +42,6 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
-logs/
-
 # Project cache/output
 cache/
 

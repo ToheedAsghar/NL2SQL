@@ -27,7 +27,7 @@ class ExplainerAgent:
             self,
             candidate: SQLCandidate,
             validation_results: list[CandidateValidationResult],
-            user_query: str = ""
+            user_query: str = "",
     ) -> ExplainerOutput:
         """PARALLEL"""
         logger.info("ExplainerAgent: 3 output taaks in PARALLEL")
