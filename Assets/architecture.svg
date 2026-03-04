@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 2420" width="1200" height="2420"
+     font-family="'Segoe UI','Helvetica Neue',system-ui,Arial,sans-serif">
+
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#546E7A"/>
+  </marker>
+  <marker id="ah-warn" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#C62828"/>
+  </marker>
+  <marker id="ah-ok" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2E7D32"/>
+  </marker>
+</defs>
+
+<!-- ============================================================ -->
+<!--  BACKGROUND                                                    -->
+<!-- ============================================================ -->
+<rect width="1200" height="2420" fill="#FFFFFF"/>
+
+<!-- ============================================================ -->
+<!--  TITLE                                                         -->
+<!-- ============================================================ -->
+<text x="600" y="30" text-anchor="middle" font-size="22" font-weight="700" fill="#1A237E"
+      letter-spacing="0.5">NL2SQL — Multi-Agent System Architecture</text>
+<text x="600" y="52" text-anchor="middle" font-size="12" fill="#546E7A">
+  LangGraph-Orchestrated Pipeline  ·  Multi-Signal Discovery  ·  Parallel Validation  ·  Explainable Output</text>
+
+<!-- ============================================================ -->
+<!--  1. USER INTERFACE LAYER                                       -->
+<!-- ============================================================ -->
+<text x="600" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#37474F"
+      letter-spacing="1.5" text-decoration="none" opacity="0.7">USER INTERFACE LAYER</text>
+
+<rect x="295" y="90" width="270" height="42" rx="8" fill="#E1F5FE" stroke="#0277BD" stroke-width="1.5"/>
+<text x="430" y="110" text-anchor="middle" font-size="12" font-weight="600" fill="#01579B">Natural Language Query Input</text>
+<text x="430" y="124" text-anchor="middle" font-size="9.5" fill="#0277BD">Free-form English Questions</text>
+
+<rect x="595" y="90" width="270" height="42" rx="8" fill="#E1F5FE" stroke="#0277BD" stroke-width="1.5"/>
+<text x="730" y="110" text-anchor="middle" font-size="12" font-weight="600" fill="#01579B">Command Line Interface</text>
+<text x="730" y="124" text-anchor="middle" font-size="9.5" fill="#0277BD">Interactive / Batch Mode</text>
+
+<!-- Arrow: User Interface → LangGraph -->
+<line x1="560" y1="132" x2="560" y2="162" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<!-- ============================================================ -->
+<!--  2. LANGGRAPH ORCHESTRATION LAYER                              -->
+<!-- ============================================================ -->
+<rect x="80" y="155" width="1040" height="155" rx="12" fill="#FAFBFC" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="8,4"/>
+<text x="600" y="148" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E"
+      letter-spacing="1">LANGGRAPH ORCHESTRATION LAYER</text>
+
+<!-- StateGraph Controller -->
+<rect x="110" y="178" width="290" height="58" rx="8" fill="#E0F2F1" stroke="#00695C" stroke-width="1.5"/>
+<text x="255" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="#004D40">StateGraph Controller</text>
+<text x="255" y="216" text-anchor="middle" font-size="10" fill="#00695C">Graph/State Management</text>
+<text x="255" y="229" text-anchor="middle" font-size="10" fill="#00695C">Conditional Edge Routing</text>
+
+<!-- GraphState TypedDict -->
+<rect x="470" y="170" width="580" height="130" rx="8" fill="#E0F2F1" stroke="#00695C" stroke-width="1.5"/>
+<text x="760" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#004D40">GraphState (TypedDict)</text>
+
+<text x="595" y="210" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">user_query</text>
+<text x="595" y="224" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">tables</text>
+<text x="595" y="238" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">security_passed</text>
+<text x="595" y="252" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">discovery_result</text>
+<text x="595" y="266" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">gated_tables</text>
+
+<text x="895" y="210" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">formatted_schema</text>
+<text x="895" y="224" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">generation</text>
+<text x="895" y="238" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">validation</text>
+<text x="895" y="252" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">retry_context</text>
+<text x="895" y="266" text-anchor="middle" font-size="9.5" fill="#00695C" font-family="'Courier New',monospace">attempt · output</text>
+
+<!-- Arrow: LangGraph → Pre-Processing -->
+<line x1="560" y1="310" x2="560" y2="343" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<!-- ============================================================ -->
+<!--  3. PRE-PROCESSING LAYER                                       -->
+<!-- ============================================================ -->
+<rect x="45" y="340" width="1110" height="175" rx="12" fill="#FAFBFC" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="8,4"/>
+<text x="600" y="334" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E"
+      letter-spacing="1">PRE-PROCESSING LAYER</text>
+
+<!-- Schema Loader -->
+<rect x="370" y="358" width="320" height="55" rx="8" fill="#E8EAF6" stroke="#3949AB" stroke-width="1.5"/>
+<text x="530" y="380" text-anchor="middle" font-size="13" font-weight="700" fill="#1A237E">Schema Loader</text>
+<text x="530" y="396" text-anchor="middle" font-size="10" fill="#3949AB">Async DB Introspection · Table, Column, FK Discovery</text>
+
+<!-- Arrows from Schema Loader to sub-components -->
+<line x1="370" y1="400" x2="195" y2="432" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="530" y1="413" x2="530" y2="432" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="690" y1="400" x2="850" y2="432" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Cache flow labels -->
+<text x="315" y="418" text-anchor="middle" font-size="8.5" fill="#78909C" font-style="italic">Cache Miss</text>
+<text x="530" y="428" text-anchor="middle" font-size="8.5" fill="#78909C" font-style="italic">Schema Data</text>
+<text x="730" y="418" text-anchor="middle" font-size="8.5" fill="#78909C" font-style="italic">Cache Hit</text>
+
+<!-- Data Layer -->
+<rect x="60" y="435" width="250" height="62" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+<text x="185" y="457" text-anchor="middle" font-size="12" font-weight="700" fill="#4A148C">Data Layer</text>
+<text x="185" y="472" text-anchor="middle" font-size="10" fill="#7B1FA2">SQLite Databases · Spider Dataset</text>
+<text x="185" y="486" text-anchor="middle" font-size="10" fill="#7B1FA2">200+ Domains</text>
+
+<!-- Schema Cache -->
+<rect x="380" y="435" width="280" height="62" rx="8" fill="#E8EAF6" stroke="#3949AB" stroke-width="1.5"/>
+<text x="520" y="457" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E">Schema Cache</text>
+<text x="520" y="472" text-anchor="middle" font-size="10" fill="#3949AB">Dictionary LRU Cache</text>
+<text x="520" y="486" text-anchor="middle" font-size="10" fill="#3949AB">TTL-based Invalidation</text>
+
+<!-- Security Filter -->
+<rect x="730" y="435" width="280" height="62" rx="8" fill="#E8EAF6" stroke="#3949AB" stroke-width="1.5"/>
+<text x="870" y="457" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E">Security Filter</text>
+<text x="870" y="472" text-anchor="middle" font-size="10" fill="#3949AB">Rule-based Threat Detection</text>
+<text x="870" y="486" text-anchor="middle" font-size="10" fill="#3949AB">Regex Pattern Matching</text>
+
+<!-- Arrow: Pre-Processing → Discovery (with "Safe" label) -->
+<line x1="560" y1="515" x2="560" y2="555" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#ah-ok)"/>
+<rect x="535" y="525" width="50" height="16" rx="4" fill="#E8F5E9"/>
+<text x="560" y="537" text-anchor="middle" font-size="9" font-weight="600" fill="#2E7D32">Safe</text>
+
+<!-- ============================================================ -->
+<!--  4. DISCOVERY LAYER — MULTI-SIGNAL FUSION                      -->
+<!-- ============================================================ -->
+<rect x="45" y="555" width="1110" height="330" rx="12" fill="#FAFBFC" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="8,4"/>
+<text x="600" y="549" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E"
+      letter-spacing="1">DISCOVERY LAYER — MULTI-SIGNAL FUSION</text>
+
+<!-- Discovery Orchestrator -->
+<rect x="385" y="573" width="300" height="47" rx="8" fill="#E0F2F1" stroke="#00695C" stroke-width="1.5"/>
+<text x="535" y="594" text-anchor="middle" font-size="13" font-weight="700" fill="#004D40">Discovery Orchestrator</text>
+<text x="535" y="610" text-anchor="middle" font-size="10" fill="#00695C">Parallel Signal Processing</text>
+
+<!-- Label: Parallel Signals -->
+<text x="535" y="643" text-anchor="middle" font-size="10" font-weight="600" fill="#78909C" font-style="italic">─── Parallel Signals ───</text>
+
+<!-- Arrows: Orchestrator → 3 signals -->
+<line x1="420" y1="620" x2="215" y2="653" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="535" y1="620" x2="535" y2="653" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="650" y1="620" x2="855" y2="653" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Keyword Signal -->
+<rect x="60" y="655" width="310" height="95" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="215" y="676" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Keyword Signal</text>
+<text x="215" y="694" text-anchor="middle" font-size="10" fill="#F57F17">Algorithm: TF-IDF + Token Match</text>
+<text x="215" y="710" text-anchor="middle" font-size="10" fill="#F57F17">Model: None (rule-based)</text>
+<text x="215" y="726" text-anchor="middle" font-size="10" fill="#F57F17">Weight: 0.35</text>
+<text x="215" y="742" text-anchor="middle" font-size="10" fill="#F57F17">Output: Relevance Scores</text>
+
+<!-- Semantic Signal -->
+<rect x="400" y="655" width="310" height="95" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="555" y="676" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Semantic Signal</text>
+<text x="555" y="694" text-anchor="middle" font-size="10" fill="#F57F17">Algorithm: Cosine Similarity</text>
+<text x="555" y="710" text-anchor="middle" font-size="10" fill="#F57F17">Embeddings: text-embedding-3-small</text>
+<text x="555" y="726" text-anchor="middle" font-size="10" fill="#F57F17">Weight: 0.45</text>
+<text x="555" y="742" text-anchor="middle" font-size="10" fill="#F57F17">Output: Similarity Matrix</text>
+
+<!-- FK Graph Signal -->
+<rect x="740" y="655" width="310" height="95" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="895" y="676" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">FK Graph Signal</text>
+<text x="895" y="694" text-anchor="middle" font-size="10" fill="#F57F17">Algorithm: PageRank on DAG</text>
+<text x="895" y="710" text-anchor="middle" font-size="10" fill="#F57F17">Graph: Foreign Key Relationships</text>
+<text x="895" y="726" text-anchor="middle" font-size="10" fill="#F57F17">Weight: 0.20</text>
+<text x="895" y="742" text-anchor="middle" font-size="10" fill="#F57F17">Output: Centrality Scores</text>
+
+<!-- Arrows: 3 signals → Score Fusion -->
+<line x1="215" y1="750" x2="430" y2="790" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="555" y1="750" x2="555" y2="790" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="895" y1="750" x2="690" y2="790" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Score Fusion Engine -->
+<polygon points="555,785 740,817 555,849 370,817" fill="#FCE4EC" stroke="#AD1457" stroke-width="1.5"/>
+<text x="555" y="813" text-anchor="middle" font-size="12" font-weight="700" fill="#880E4F">Score Fusion Engine</text>
+<text x="555" y="828" text-anchor="middle" font-size="9.5" fill="#AD1457">Weighted Sum · Descending Rank</text>
+
+<!-- Arrow: Discovery → Context Optimization -->
+<line x1="555" y1="849" x2="555" y2="860" stroke="#546E7A" stroke-width="0"/>
+<line x1="555" y1="855" x2="555" y2="915" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<!-- ============================================================ -->
+<!--  5. CONTEXT OPTIMIZATION LAYER                                 -->
+<!-- ============================================================ -->
+<rect x="170" y="910" width="860" height="175" rx="12" fill="#FAFBFC" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="8,4"/>
+<text x="600" y="904" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E"
+      letter-spacing="1">CONTEXT OPTIMIZATION LAYER</text>
+
+<!-- Gate Mechanism -->
+<rect x="365" y="928" width="340" height="55" rx="8" fill="#E8EAF6" stroke="#3949AB" stroke-width="1.5"/>
+<text x="535" y="950" text-anchor="middle" font-size="13" font-weight="700" fill="#1A237E">Gate Mechanism</text>
+<text x="535" y="967" text-anchor="middle" font-size="10" fill="#3949AB">Top-K Selection · Token Budget Management</text>
+
+<!-- Arrow: Gate → Schema Formatter -->
+<line x1="535" y1="983" x2="535" y2="1005" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Schema Formatter -->
+<rect x="365" y="1008" width="340" height="55" rx="8" fill="#E8EAF6" stroke="#3949AB" stroke-width="1.5"/>
+<text x="535" y="1030" text-anchor="middle" font-size="13" font-weight="700" fill="#1A237E">Schema Formatter</text>
+<text x="535" y="1047" text-anchor="middle" font-size="10" fill="#3949AB">DDL Generation · Context Window Optimization</text>
+
+<!-- Arrow: Context → LLM Generation -->
+<line x1="535" y1="1085" x2="535" y2="1130" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+<!-- ============================================================ -->
+<!--  6. LLM GENERATION LAYER                                       -->
+<!-- ============================================================ -->
+<rect x="170" y="1125" width="860" height="220" rx="12" fill="#FAFBFC" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="8,4"/>
+<text x="600" y="1119" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E"
+      letter-spacing="1">LLM GENERATION LAYER</text>
+
+<!-- Query Generator -->
+<rect x="340" y="1148" width="385" height="72" rx="8" fill="#E8EAF6" stroke="#3949AB" stroke-width="1.5"/>
+<text x="533" y="1172" text-anchor="middle" font-size="13" font-weight="700" fill="#1A237E">Query Generator</text>
+<text x="533" y="1190" text-anchor="middle" font-size="10" fill="#3949AB">Model: GPT-4o-mini · Temperature: [0.3, 0.5, 0.7]</text>
+<text x="533" y="1206" text-anchor="middle" font-size="10" fill="#3949AB">Strategy: Few-Shot + CoT · N=3 Candidates</text>
+
+<!-- Arrow: Generator → Retry decision -->
+<line x1="533" y1="1220" x2="533" y2="1252" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Retry Controller (diamond) -->
+<polygon points="533,1248 635,1283 533,1318 431,1283" fill="#FFF3E0" stroke="#E65100" stroke-width="1.5"/>
+<text x="533" y="1280" text-anchor="middle" font-size="11" font-weight="700" fill="#BF360C">Retry Controller</text>
+<text x="533" y="1296" text-anchor="middle" font-size="9" fill="#E65100">Max: 2 · Error-Aware</text>
+
+<!-- Retry loop arrow (left side): Retry → back to Generator -->
+<path d="M 431,1283 L 310,1283 L 310,1184 L 340,1184" fill="none"
+      stroke="#C62828" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#ah-warn)"/>
+<text x="280" y="1235" text-anchor="middle" font-size="9" font-weight="600" fill="#C62828"
+      transform="rotate(-90,280,1235)">Failed &amp; Retry</text>
+
+<!-- "Unsafe" label going right -->
+<line x1="635" y1="1283" x2="1060" y2="1283" stroke="#C62828" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#ah-warn)"/>
+<text x="1080" y="1287" text-anchor="start" font-size="10" font-weight="600" fill="#C62828">Unsafe</text>
+
+<!-- Arrow: Retry → Validation (Success) -->
+<line x1="533" y1="1318" x2="533" y2="1345" stroke="#546E7A" stroke-width="0"/>
+<line x1="533" y1="1328" x2="533" y2="1395" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#ah-ok)"/>
+<rect x="505" y="1350" width="65" height="16" rx="4" fill="#E8F5E9"/>
+<text x="537" y="1362" text-anchor="middle" font-size="9" font-weight="600" fill="#2E7D32">Success</text>
+
+<!-- ============================================================ -->
+<!--  7. VALIDATION LAYER — PARALLEL                                -->
+<!-- ============================================================ -->
+<rect x="45" y="1390" width="1110" height="290" rx="12" fill="#FAFBFC" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="8,4"/>
+<text x="600" y="1384" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E"
+      letter-spacing="1">VALIDATION LAYER — PARALLEL</text>
+
+<!-- Validator Orchestrator -->
+<rect x="370" y="1410" width="320" height="47" rx="8" fill="#E0F2F1" stroke="#00695C" stroke-width="1.5"/>
+<text x="530" y="1432" text-anchor="middle" font-size="13" font-weight="700" fill="#004D40">Validator Orchestrator</text>
+<text x="530" y="1448" text-anchor="middle" font-size="10" fill="#00695C">Async Parallel Execution</text>
+
+<!-- Label: Independent Validators -->
+<text x="530" y="1478" text-anchor="middle" font-size="10" font-weight="600" fill="#78909C" font-style="italic">─── Independent Validators ───</text>
+
+<!-- Arrows: Orchestrator → 4 validators -->
+<line x1="420" y1="1457" x2="170" y2="1488" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="480" y1="1457" x2="440" y2="1488" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="580" y1="1457" x2="680" y2="1488" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="640" y1="1457" x2="930" y2="1488" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Syntax Validator -->
+<rect x="60" y="1490" width="240" height="72" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="180" y="1514" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Syntax Validator</text>
+<text x="180" y="1532" text-anchor="middle" font-size="10" fill="#F57F17">Parser Validation</text>
+<text x="180" y="1548" text-anchor="middle" font-size="10" fill="#F57F17">AST Feature Analysis</text>
+
+<!-- Logic Validator -->
+<rect x="325" y="1490" width="240" height="72" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="445" y="1514" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Logic Validator</text>
+<text x="445" y="1532" text-anchor="middle" font-size="10" fill="#F57F17">Schema Consistency</text>
+<text x="445" y="1548" text-anchor="middle" font-size="10" fill="#F57F17">Join Correctness</text>
+
+<!-- Security Validator -->
+<rect x="590" y="1490" width="240" height="72" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="710" y="1514" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Security Validator</text>
+<text x="710" y="1532" text-anchor="middle" font-size="10" fill="#F57F17">Injection Detection</text>
+<text x="710" y="1548" text-anchor="middle" font-size="10" fill="#F57F17">Privilege Analysis</text>
+
+<!-- Performance Validator -->
+<rect x="855" y="1490" width="240" height="72" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="975" y="1514" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Performance Validator</text>
+<text x="975" y="1532" text-anchor="middle" font-size="10" fill="#F57F17">Query Complexity Analysis</text>
+<text x="975" y="1548" text-anchor="middle" font-size="10" fill="#F57F17">Index Recommendations</text>
+
+<!-- Arrows: 4 validators → Result Aggregator -->
+<line x1="180" y1="1562" x2="430" y2="1603" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="445" y1="1562" x2="490" y2="1603" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="710" y1="1562" x2="590" y2="1603" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="975" y1="1562" x2="660" y2="1603" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Result Aggregator -->
+<rect x="385" y="1605" width="300" height="50" rx="8" fill="#FCE4EC" stroke="#AD1457" stroke-width="1.5"/>
+<text x="535" y="1627" text-anchor="middle" font-size="12" font-weight="700" fill="#880E4F">Result Aggregator</text>
+<text x="535" y="1643" text-anchor="middle" font-size="10" fill="#AD1457">AND Logic · Error Collection</text>
+
+<!-- Retry arrow from Result Aggregator back to Generation Layer (right side) -->
+<path d="M 685,1630 L 1100,1630 L 1100,1184 L 725,1184" fill="none"
+      stroke="#C62828" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#ah-warn)"/>
+<text x="1125" y="1410" text-anchor="start" font-size="9.5" font-weight="600" fill="#C62828"
+      transform="rotate(-90,1125,1410)">Failed &amp; First Retry</text>
+
+<!-- Arrow: Validation → Explanation (Passed) -->
+<line x1="535" y1="1680" x2="535" y2="1735" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#ah-ok)"/>
+<rect x="507" y="1695" width="58" height="16" rx="4" fill="#E8F5E9"/>
+<text x="536" y="1707" text-anchor="middle" font-size="9" font-weight="600" fill="#2E7D32">Passed</text>
+
+<!-- ============================================================ -->
+<!--  8. EXPLANATION LAYER                                          -->
+<!-- ============================================================ -->
+<rect x="45" y="1730" width="1110" height="235" rx="12" fill="#FAFBFC" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="8,4"/>
+<text x="600" y="1724" text-anchor="middle" font-size="12" font-weight="700" fill="#1A237E"
+      letter-spacing="1">EXPLANATION LAYER</text>
+
+<!-- Explanation Orchestrator -->
+<rect x="370" y="1750" width="320" height="47" rx="8" fill="#E0F2F1" stroke="#00695C" stroke-width="1.5"/>
+<text x="530" y="1772" text-anchor="middle" font-size="13" font-weight="700" fill="#004D40">Explanation Orchestrator</text>
+<text x="530" y="1788" text-anchor="middle" font-size="10" fill="#00695C">Async Parallel Execution</text>
+
+<!-- Arrows: Orchestrator → 3 explanation agents -->
+<line x1="420" y1="1797" x2="215" y2="1828" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="530" y1="1797" x2="530" y2="1828" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="640" y1="1797" x2="855" y2="1828" stroke="#546E7A" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Explanation Generator -->
+<rect x="60" y="1830" width="310" height="82" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="215" y="1854" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Explanation Generator</text>
+<text x="215" y="1872" text-anchor="middle" font-size="10" fill="#F57F17">Natural Language Description</text>
+<text x="215" y="1888" text-anchor="middle" font-size="10" fill="#F57F17">Step-by-Step Decomposition</text>
+<text x="215" y="1904" text-anchor="middle" font-size="10" fill="#F57F17">Human-Readable Summary</text>
+
+<!-- Safety Assessor -->
+<rect x="400" y="1830" width="310" height="82" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="555" y="1854" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Safety Assessor</text>
+<text x="555" y="1872" text-anchor="middle" font-size="10" fill="#F57F17">4D Scoring Matrix</text>
+<text x="555" y="1888" text-anchor="middle" font-size="10" fill="#F57F17">0–1 Scale per Dimension</text>
+<text x="555" y="1904" text-anchor="middle" font-size="10" fill="#F57F17">Security · Syntax · Logic · Perf</text>
+
+<!-- Optimization Advisor -->
+<rect x="740" y="1830" width="310" height="82" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.5"/>
+<text x="895" y="1854" text-anchor="middle" font-size="12" font-weight="700" fill="#E65100">Optimization Advisor</text>
+<text x="895" y="1872" text-anchor="middle" font-size="10" fill="#F57F17">Performance Heuristics</text>
+<text x="895" y="1888" text-anchor="middle" font-size="10" fill="#F57F17">Index Suggestions</text>
+<text x="895" y="1904" text-anchor="middle" font-size="10" fill="#F57F17">Query Rewrite Hints</text>
+
+<!-- ============================================================ -->
+<!--  API CALL LABELS (dotted arrows to External Services)          -->
+<!-- ============================================================ -->
+<line x1="215" y1="1912" x2="215" y2="1985" stroke="#78909C" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+<text x="215" y="1978" text-anchor="middle" font-size="8.5" fill="#78909C" font-style="italic">API Call</text>
+<line x1="555" y1="1912" x2="555" y2="1985" stroke="#78909C" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+<text x="555" y="1978" text-anchor="middle" font-size="8.5" fill="#78909C" font-style="italic">API Call</text>
+<line x1="895" y1="1912" x2="895" y2="1985" stroke="#78909C" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+<text x="895" y="1978" text-anchor="middle" font-size="8.5" fill="#78909C" font-style="italic">API Call</text>
+
+<!-- ============================================================ -->
+<!--  9. EXTERNAL SERVICES & STRUCTURED OUTPUT                      -->
+<!-- ============================================================ -->
+
+<!-- External Services -->
+<rect x="60" y="1990" width="310" height="70" rx="8" fill="#E1F5FE" stroke="#0277BD" stroke-width="1.5"/>
+<text x="215" y="2014" text-anchor="middle" font-size="12" font-weight="700" fill="#01579B">External Services</text>
+<text x="215" y="2032" text-anchor="middle" font-size="10" fill="#0277BD">LLM Provider · OpenRouter API</text>
+<text x="215" y="2048" text-anchor="middle" font-size="10" fill="#0277BD">OpenAI Compatible Interface</text>
+
+<!-- Arrow: External → Output -->
+<line x1="370" y1="2025" x2="770" y2="2025" stroke="#546E7A" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ah)"/>
+
+<!-- Structured Output -->
+<rect x="790" y="1990" width="310" height="70" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2"/>
+<text x="945" y="2014" text-anchor="middle" font-size="13" font-weight="700" fill="#1B5E20">Structured Output</text>
+<text x="945" y="2032" text-anchor="middle" font-size="10" fill="#2E7D32">SQL · Explanation · Safety Report</text>
+<text x="945" y="2048" text-anchor="middle" font-size="10" fill="#2E7D32">Optimization Hints · Candidate Scores</text>
+
+<!-- ============================================================ -->
+<!--  LEGEND                                                        -->
+<!-- ============================================================ -->
+<rect x="50" y="2095" width="1100" height="80" rx="10" fill="#FAFBFC" stroke="#CFD8DC" stroke-width="1"/>
+<text x="600" y="2115" text-anchor="middle" font-size="11" font-weight="700" fill="#37474F">LEGEND</text>
+
+<!-- Orchestrator -->
+<rect x="80" y="2126" width="18" height="18" rx="4" fill="#E0F2F1" stroke="#00695C" stroke-width="1.2"/>
+<text x="106" y="2140" font-size="10" fill="#37474F">Orchestrator</text>
+
+<!-- Processing -->
+<rect x="220" y="2126" width="18" height="18" rx="4" fill="#E8EAF6" stroke="#3949AB" stroke-width="1.2"/>
+<text x="246" y="2140" font-size="10" fill="#37474F">Processing Node</text>
+
+<!-- Agent / Signal -->
+<rect x="380" y="2126" width="18" height="18" rx="4" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.2"/>
+<text x="406" y="2140" font-size="10" fill="#37474F">Agent / Signal</text>
+
+<!-- Decision -->
+<polygon points="545,2126 559,2135 545,2144 531,2135" fill="#FCE4EC" stroke="#AD1457" stroke-width="1.2"/>
+<text x="570" y="2140" font-size="10" fill="#37474F">Decision / Fusion</text>
+
+<!-- Data Store -->
+<rect x="710" y="2126" width="18" height="18" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.2"/>
+<text x="736" y="2140" font-size="10" fill="#37474F">Data Store</text>
+
+<!-- I/O -->
+<rect x="840" y="2126" width="18" height="18" rx="4" fill="#E1F5FE" stroke="#0277BD" stroke-width="1.2"/>
+<text x="866" y="2140" font-size="10" fill="#37474F">Input / Output</text>
+
+<!-- Retry -->
+<line x1="965" y1="2135" x2="1000" y2="2135" stroke="#C62828" stroke-width="1.3" stroke-dasharray="5,3"/>
+<text x="1010" y="2140" font-size="10" fill="#37474F">Retry / Error Path</text>
+
+<!-- ============================================================ -->
+<!--  FOOTER                                                        -->
+<!-- ============================================================ -->
+<text x="600" y="2210" text-anchor="middle" font-size="10" fill="#90A4AE">
+  NL2SQL Multi-Agent Architecture  ·  Built with LangGraph + OpenRouter  ·  8 Specialized Agents  ·  Async Pipeline</text>
+<text x="600" y="2228" text-anchor="middle" font-size="9" fill="#B0BEC5">
+  © 2026 Toheed Asghar  ·  github.com/toheedasghar</text>
+
+<!-- ============================================================ -->
+<!--  SIDE ANNOTATIONS (connecting to external API)                 -->
+<!-- ============================================================ -->
+
+<!-- Left annotation: API calls from Generation Layer -->
+<text x="38" y="1200" font-size="9" fill="#78909C" font-style="italic"
+      transform="rotate(-90,38,1200)">API Call</text>
+<line x1="45" y1="1184" x2="170" y2="1184" stroke="#78909C" stroke-width="1" stroke-dasharray="4,3"/>
+
+<!-- Left annotation: API calls from Validation Layer -->
+<text x="38" y="1530" font-size="9" fill="#78909C" font-style="italic"
+      transform="rotate(-90,38,1530)">API Call</text>
+<line x1="45" y1="1526" x2="60" y2="1526" stroke="#78909C" stroke-width="1" stroke-dasharray="4,3"/>
+
+</svg>

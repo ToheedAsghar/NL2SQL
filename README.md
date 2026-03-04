@@ -29,68 +29,13 @@ A sophisticated **multi-agent orchestration system** that converts natural langu
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        NL2SQL Pipeline                          │
-└─────────────────────────────────────────────────────────────────┘
+<div align="center">
 
-  User Query
-      │
-      ▼
-┌──────────────────┐
-│  Load Schema     │  ← Schema Cache
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│ Security Filter  │  → Block dangerous queries
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│ Discovery Agent  │  → Multi-signal table ranking
-│ • Keyword        │     (Keywords + Semantics + FK Graph)
-│ • Semantic       │
-│ • FK Graph       │
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│  Gate Agent      │  → Narrow down to top N tables
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│ Schema Formatter │  → Format schema for LLM context
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│ Query Generator  │  → Generate SQL with one-shot retry
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│ Validator Agent  │  → Syntax, Logic, Security, Performance
-│ • Syntax Check   │
-│ • Logic Check    │
-│ • Security Check │
-│ • Performance    │
-└────────┬─────────┘
-         │
-         ▼
-┌──────────────────┐
-│ Explainer Agent  │  → Generate human-readable explanation
-│ • Steps          │
-│ • Safety Report  │
-│ • Optimization   │
-└────────┬─────────┘
-         │
-         ▼
-    Final Output
-```
+<img src="nl2sql-architecture.svg" alt="NL2SQL Multi-Agent System Architecture" width="100%"/>
 
----
+<!-- <sub><i>Figure 1: End-to-end pipeline architecture — LangGraph-orchestrated multi-agent system with parallel signal discovery, N-candidate generation, 4-stage validation, and explainable output.</i></sub> -->
+
+</div>
 
 ## Quick Start
 
