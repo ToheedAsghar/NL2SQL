@@ -1,0 +1,364 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 1460" font-family="'Times New Roman', Times, serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#000"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+    <marker id="arrowDash" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <rect width="820" height="1460" fill="#ffffff"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- TITLE                                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <text x="410" y="36" text-anchor="middle" font-size="15" font-weight="bold" fill="#000">NL2SQL: Multi-Agent Natural Language to SQL Pipeline</text>
+  <text x="410" y="53" text-anchor="middle" font-size="10" fill="#333" font-style="italic">LangGraph Orchestration · OpenRouter LLM Backend · Spider Dataset</text>
+  <line x1="60" y1="62" x2="760" y2="62" stroke="#000" stroke-width="1"/>
+  <line x1="60" y1="64" x2="760" y2="64" stroke="#000" stroke-width="0.3"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- INPUT ROW                                   -->
+  <!-- Query box: y=76, height=46 → bottom=122    -->
+  <!-- Text lines at y=93 and y=109 (safe inside) -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="265" y="76" width="240" height="46" rx="2" fill="#fff" stroke="#000" stroke-width="1.2"/>
+  <text x="385" y="95" text-anchor="middle" font-size="11" font-weight="bold" fill="#000">Natural Language Query</text>
+  <text x="385" y="112" text-anchor="middle" font-size="9" fill="#333">CLI · Interactive / Batch Mode</text>
+
+  <!-- LangGraph State box: y=76, height=56 → bottom=132 -->
+  <!-- 3 text lines need more height -->
+  <rect x="570" y="76" width="185" height="56" rx="2" fill="#f5f5f5" stroke="#000" stroke-width="1" stroke-dasharray="4 2"/>
+  <text x="663" y="94" text-anchor="middle" font-size="10" font-weight="bold" fill="#000">LangGraph State</text>
+  <text x="663" y="108" text-anchor="middle" font-size="8.5" fill="#333">TypedDict · StateGraph</text>
+  <text x="663" y="122" text-anchor="middle" font-size="8.5" fill="#333">Controller</text>
+
+  <!-- connector: Query → LangGraph (horizontal, from right edge of query to left edge of state) -->
+  <line x1="505" y1="99" x2="568" y2="99" stroke="#555" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#arrowGray)"/>
+
+  <!-- down arrow from query -->
+  <line x1="385" y1="122" x2="385" y2="144" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION: PRE-PROCESSING                     -->
+  <!-- outer rect: y=144, height=168 → bottom=312  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="60" y="144" width="700" height="168" rx="2" fill="#fafafa" stroke="#aaa" stroke-width="0.8"/>
+  <text x="72" y="158" font-size="8.5" font-weight="bold" fill="#555" letter-spacing="1">PRE-PROCESSING</text>
+
+  <!-- Schema Loader: y=165, height=58 → bottom=223 -->
+  <!-- title y=182, line1 y=197, line2 y=211 -->
+  <rect x="80" y="165" width="200" height="58" rx="2" fill="#fff" stroke="#000" stroke-width="1.1"/>
+  <text x="180" y="182" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Schema Loader</text>
+  <text x="180" y="197" text-anchor="middle" font-size="8.5" fill="#333">Async DB Introspection</text>
+  <text x="180" y="211" text-anchor="middle" font-size="8.5" fill="#333">Table · Column · FK Discovery</text>
+
+  <!-- Schema Cache: y=165, height=58 → bottom=223 -->
+  <rect x="310" y="165" width="175" height="58" rx="2" fill="#fff" stroke="#555" stroke-width="0.8" stroke-dasharray="4 2"/>
+  <text x="398" y="182" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Schema Cache</text>
+  <text x="398" y="197" text-anchor="middle" font-size="8.5" fill="#333">LRU In-Memory Cache</text>
+  <text x="398" y="211" text-anchor="middle" font-size="8.5" fill="#333">TTL-based Invalidation</text>
+
+  <!-- Security Filter: y=165, height=58 → bottom=223 -->
+  <rect x="515" y="165" width="215" height="58" rx="2" fill="#fff" stroke="#000" stroke-width="1.1"/>
+  <text x="623" y="182" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Security Filter</text>
+  <text x="623" y="197" text-anchor="middle" font-size="8.5" fill="#333">Rule-Based Threat Detection</text>
+  <text x="623" y="211" text-anchor="middle" font-size="8.5" fill="#333">DROP · DELETE · Injection Regex</text>
+
+  <!-- cache miss arrow (loader right → cache left, top half) -->
+  <line x1="280" y1="183" x2="308" y2="183" stroke="#000" stroke-width="0.9" stroke-dasharray="3 2" marker-end="url(#arrowDash)"/>
+  <text x="294" y="178" text-anchor="middle" font-size="7.5" fill="#555" font-style="italic">miss</text>
+  <!-- cache hit arrow (cache left → loader right, lower half) -->
+  <line x1="308" y1="203" x2="280" y2="203" stroke="#555" stroke-width="0.9" stroke-dasharray="3 2" marker-end="url(#arrowDash)"/>
+  <text x="294" y="216" text-anchor="middle" font-size="7.5" fill="#555" font-style="italic">hit</text>
+
+  <!-- cache → security -->
+  <line x1="485" y1="194" x2="513" y2="194" stroke="#000" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- unsafe label above section border -->
+  <text x="650" y="158" text-anchor="middle" font-size="8" fill="#555" font-style="italic">unsafe → reject</text>
+  <line x1="650" y1="161" x2="650" y2="165" stroke="#aaa" stroke-width="0.7" stroke-dasharray="2 2"/>
+
+  <!-- Data layer box: y=238, height=24 → bottom=262 -->
+  <rect x="80" y="238" width="200" height="24" rx="2" fill="#efefef" stroke="#bbb" stroke-width="0.7"/>
+  <text x="180" y="254" text-anchor="middle" font-size="8.5" fill="#444">SQLite · Spider Dataset · 200+ DBs</text>
+  <!-- dashed connector from Schema Loader bottom to data box -->
+  <line x1="180" y1="223" x2="180" y2="238" stroke="#aaa" stroke-width="0.8" stroke-dasharray="2 2"/>
+
+  <!-- arrow out of pre-processing section -->
+  <line x1="385" y1="312" x2="385" y2="336" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="398" y="327" font-size="8" fill="#333" font-style="italic">safe</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION: DISCOVERY                          -->
+  <!-- outer rect: y=336, height=244 → bottom=580  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="60" y="336" width="700" height="244" rx="2" fill="#fafafa" stroke="#aaa" stroke-width="0.8"/>
+  <text x="72" y="351" font-size="8.5" font-weight="bold" fill="#555" letter-spacing="1">MULTI-SIGNAL TABLE DISCOVERY</text>
+
+  <!-- Discovery Orchestrator: y=358, height=40 → bottom=398 -->
+  <rect x="255" y="358" width="260" height="40" rx="2" fill="#fff" stroke="#000" stroke-width="1.2"/>
+  <text x="385" y="374" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Discovery Orchestrator</text>
+  <text x="385" y="390" text-anchor="middle" font-size="8.5" fill="#333">Parallel Signal Processing</text>
+
+  <!-- fan-out lines from bottom of orchestrator (y=398) to tops of agents (y=416) -->
+  <line x1="320" y1="398" x2="178" y2="416" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="385" y1="398" x2="385" y2="416" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="452" y1="398" x2="600" y2="416" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+
+  <!-- (i) Keyword Signal: y=416, height=100 → bottom=516 -->
+  <!-- title y=432, divider y=436, line1 y=450, line2 y=463, weight y=477, file y=508 -->
+  <rect x="82" y="416" width="192" height="100" rx="2" fill="#fff" stroke="#000" stroke-width="1.1"/>
+  <text x="178" y="432" text-anchor="middle" font-size="10" font-weight="bold" fill="#000">(i) Keyword Signal</text>
+  <line x1="98" y1="436" x2="258" y2="436" stroke="#000" stroke-width="0.5"/>
+  <text x="178" y="450" text-anchor="middle" font-size="8.5" fill="#333">TF-IDF + Token Match</text>
+  <text x="178" y="464" text-anchor="middle" font-size="8.5" fill="#333">Output: Relevance Scores</text>
+  <text x="178" y="480" text-anchor="middle" font-size="8" fill="#555" font-style="italic">w = 0.35</text>
+  <text x="178" y="508" text-anchor="middle" font-size="7.5" fill="#777">keyword_agent.py</text>
+
+  <!-- (ii) Semantic Signal: y=416, height=100 → bottom=516 -->
+  <rect x="290" y="416" width="192" height="100" rx="2" fill="#fff" stroke="#000" stroke-width="1.1"/>
+  <text x="386" y="432" text-anchor="middle" font-size="10" font-weight="bold" fill="#000">(ii) Semantic Signal</text>
+  <line x1="306" y1="436" x2="466" y2="436" stroke="#000" stroke-width="0.5"/>
+  <text x="386" y="450" text-anchor="middle" font-size="8.5" fill="#333">Cosine Sim · Embeddings</text>
+  <text x="386" y="464" text-anchor="middle" font-size="8.5" fill="#333">text-embedding-3-small</text>
+  <text x="386" y="480" text-anchor="middle" font-size="8" fill="#555" font-style="italic">w = 0.45</text>
+  <text x="386" y="508" text-anchor="middle" font-size="7.5" fill="#777">semantic_agent.py</text>
+
+  <!-- (iii) FK Graph Signal: y=416, height=100 → bottom=516 -->
+  <rect x="498" y="416" width="222" height="100" rx="2" fill="#fff" stroke="#000" stroke-width="1.1"/>
+  <text x="609" y="432" text-anchor="middle" font-size="10" font-weight="bold" fill="#000">(iii) FK Graph Signal</text>
+  <line x1="514" y1="436" x2="704" y2="436" stroke="#000" stroke-width="0.5"/>
+  <text x="609" y="450" text-anchor="middle" font-size="8.5" fill="#333">PageRank on FK DAG</text>
+  <text x="609" y="464" text-anchor="middle" font-size="8.5" fill="#333">Centrality Scores</text>
+  <text x="609" y="480" text-anchor="middle" font-size="8" fill="#555" font-style="italic">w = 0.20</text>
+  <text x="609" y="508" text-anchor="middle" font-size="7.5" fill="#777">fk_graph_agent.py</text>
+
+  <!-- fan-in from agent bottoms (y=516) to fusion bar (y=534) -->
+  <line x1="178" y1="516" x2="302" y2="534" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="386" y1="516" x2="386" y2="534" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="609" y1="516" x2="470" y2="534" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+
+  <!-- Score Fusion bar: y=534, height=18 → bottom=552 -->
+  <rect x="180" y="534" width="410" height="18" rx="1" fill="#e8e8e8" stroke="#000" stroke-width="1"/>
+  <text x="385" y="547" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#000">Score Fusion:  S = 0.35·k + 0.45·s + 0.20·f   →   Ranked Top-K Tables</text>
+
+  <!-- arrow out of discovery -->
+  <line x1="385" y1="552" x2="385" y2="574" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION: CONTEXT OPTIMIZATION               -->
+  <!-- outer rect: y=574, height=122 → bottom=696  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="60" y="574" width="700" height="122" rx="2" fill="#fafafa" stroke="#aaa" stroke-width="0.8"/>
+  <text x="72" y="588" font-size="8.5" font-weight="bold" fill="#555" letter-spacing="1">CONTEXT OPTIMIZATION</text>
+
+  <!-- Gate: y=596, height=72 → bottom=668 -->
+  <!-- title y=613, divider y=617, line1 y=631, line2 y=645, file y=660 -->
+  <rect x="84" y="596" width="240" height="72" rx="2" fill="#fff" stroke="#000" stroke-width="1.1"/>
+  <text x="204" y="613" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Gate Mechanism</text>
+  <line x1="100" y1="617" x2="308" y2="617" stroke="#000" stroke-width="0.5"/>
+  <text x="204" y="631" text-anchor="middle" font-size="8.5" fill="#333">Top-K Table Selection  (K = 5)</text>
+  <text x="204" y="645" text-anchor="middle" font-size="8.5" fill="#333">Token Budget Enforcement</text>
+  <text x="204" y="660" text-anchor="middle" font-size="7.5" fill="#777">filters/gate.py</text>
+
+  <!-- horizontal arrow gate → formatter -->
+  <line x1="324" y1="632" x2="356" y2="632" stroke="#000" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Schema Formatter: y=596, height=72 → bottom=668 -->
+  <rect x="356" y="596" width="280" height="72" rx="2" fill="#fff" stroke="#000" stroke-width="1.1"/>
+  <text x="496" y="613" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Schema Formatter</text>
+  <line x1="372" y1="617" x2="620" y2="617" stroke="#000" stroke-width="0.5"/>
+  <text x="496" y="631" text-anchor="middle" font-size="8.5" fill="#333">DDL Generation · Few-Shot Injection</text>
+  <text x="496" y="645" text-anchor="middle" font-size="8.5" fill="#333">LLM-Ready Context Window</text>
+  <text x="496" y="660" text-anchor="middle" font-size="7.5" fill="#777">agents/schema_formatter.py</text>
+
+  <!-- arrow out of context optimization -->
+  <line x1="385" y1="668" x2="385" y2="692" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION: LLM GENERATION                     -->
+  <!-- outer rect: y=692, height=152 → bottom=844  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="60" y="692" width="700" height="152" rx="2" fill="#fafafa" stroke="#aaa" stroke-width="0.8"/>
+  <text x="72" y="706" font-size="8.5" font-weight="bold" fill="#555" letter-spacing="1">LLM GENERATION</text>
+
+  <!-- Query Generator: y=716, height=92 → bottom=808 -->
+  <!-- title y=733, divider y=737, line1 y=751, line2 y=765, line3 y=779, file y=800 -->
+  <rect x="160" y="716" width="295" height="92" rx="2" fill="#fff" stroke="#000" stroke-width="1.2"/>
+  <text x="308" y="733" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Query Generator</text>
+  <line x1="176" y1="737" x2="439" y2="737" stroke="#000" stroke-width="0.5"/>
+  <text x="308" y="751" text-anchor="middle" font-size="8.5" fill="#333">Model: openai/gpt-4o-mini  ·  Temp: 0.1</text>
+  <text x="308" y="765" text-anchor="middle" font-size="8.5" fill="#333">Strategy: Few-Shot + Chain-of-Thought</text>
+  <text x="308" y="779" text-anchor="middle" font-size="8.5" fill="#333">Schema-Aware Prompting</text>
+  <text x="308" y="800" text-anchor="middle" font-size="7.5" fill="#777">agents/query_generator.py</text>
+
+  <!-- Retry diamond — centred at (600, 762), half-width=44, half-height=30 -->
+  <!-- vertices: top(600,732) right(644,762) bottom(600,792) left(556,762) -->
+  <polygon points="600,718 644,748 600,778 556,748" fill="#fff" stroke="#000" stroke-width="1.1"/>
+  <text x="600" y="744" text-anchor="middle" font-size="9" font-weight="bold" fill="#000">Retry</text>
+  <text x="600" y="758" text-anchor="middle" font-size="8.5" fill="#333">n ≤ 2</text>
+
+  <!-- arrow from generator right to diamond left -->
+  <line x1="455" y1="762" x2="554" y2="762" stroke="#000" stroke-width="1" marker-end="url(#arrow)"/>
+  <!-- label above arrow -->
+  <text x="504" y="757" text-anchor="middle" font-size="7.5" fill="#333">output</text>
+
+  <!-- retry arc back: from diamond bottom (600,778) curves down then left to generator top -->
+  <path d="M 600 778 C 600 820, 308 820, 308 808" stroke="#333" stroke-width="0.9" stroke-dasharray="4 2" fill="none" marker-end="url(#arrowDash)"/>
+  <text x="454" y="828" text-anchor="middle" font-size="7.5" fill="#555" font-style="italic">error-aware re-prompt</text>
+
+  <!-- arrow out of LLM Generation to Validation -->
+  <line x1="385" y1="844" x2="385" y2="866" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="398" y="858" font-size="8" fill="#333" font-style="italic">success</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION: VALIDATION                         -->
+  <!-- outer rect: y=866, height=208 → bottom=1074 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="60" y="866" width="700" height="208" rx="2" fill="#fafafa" stroke="#aaa" stroke-width="0.8"/>
+  <text x="72" y="880" font-size="8.5" font-weight="bold" fill="#555" letter-spacing="1">PARALLEL VALIDATION</text>
+
+  <!-- Validation Orchestrator: y=888, height=36 → bottom=924 -->
+  <rect x="230" y="888" width="310" height="36" rx="2" fill="#e8e8e8" stroke="#000" stroke-width="1.1"/>
+  <text x="385" y="904" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Validation Orchestrator</text>
+  <text x="385" y="918" text-anchor="middle" font-size="8.5" fill="#333">Async Parallel Execution · AND Logic</text>
+
+  <!-- fan-out from orchestrator bottom (y=924) to agent tops (y=944) -->
+  <line x1="300" y1="924" x2="152" y2="944" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="352" y1="924" x2="330" y2="944" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="420" y1="924" x2="510" y2="944" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="468" y1="924" x2="664" y2="944" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+
+  <!-- Syntax Validator: y=944, height=88 → bottom=1032 -->
+  <!-- title y=959, divider y=963, line1 y=977, line2 y=991, file y=1024 -->
+  <rect x="72" y="944" width="162" height="88" rx="2" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="153" y="959" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#000">Syntax Validator</text>
+  <line x1="86" y1="963" x2="220" y2="963" stroke="#000" stroke-width="0.4"/>
+  <text x="153" y="977" text-anchor="middle" font-size="8" fill="#333">sqlparse · AST</text>
+  <text x="153" y="991" text-anchor="middle" font-size="8" fill="#333">Grammar Check</text>
+  <text x="153" y="1024" text-anchor="middle" font-size="7.5" fill="#777">syntax_validator.py</text>
+
+  <!-- Logic Validator: y=944, height=88 → bottom=1032 -->
+  <rect x="248" y="944" width="168" height="88" rx="2" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="332" y="959" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#000">Logic Validator</text>
+  <line x1="262" y1="963" x2="402" y2="963" stroke="#000" stroke-width="0.4"/>
+  <text x="332" y="977" text-anchor="middle" font-size="8" fill="#333">Schema Consistency</text>
+  <text x="332" y="991" text-anchor="middle" font-size="8" fill="#333">Join Correctness</text>
+  <text x="332" y="1024" text-anchor="middle" font-size="7.5" fill="#777">logic_validator.py</text>
+
+  <!-- Security Validator: y=944, height=88 → bottom=1032 -->
+  <rect x="430" y="944" width="168" height="88" rx="2" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="514" y="959" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#000">Security Validator</text>
+  <line x1="444" y1="963" x2="584" y2="963" stroke="#000" stroke-width="0.4"/>
+  <text x="514" y="977" text-anchor="middle" font-size="8" fill="#333">Injection Detection</text>
+  <text x="514" y="991" text-anchor="middle" font-size="8" fill="#333">Privilege Analysis</text>
+  <text x="514" y="1024" text-anchor="middle" font-size="7.5" fill="#777">security_validator.py</text>
+
+  <!-- Performance Validator: y=944, height=88 → bottom=1032 -->
+  <rect x="612" y="944" width="118" height="88" rx="2" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="671" y="959" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#000">Performance</text>
+  <line x1="626" y1="963" x2="716" y2="963" stroke="#000" stroke-width="0.4"/>
+  <text x="671" y="977" text-anchor="middle" font-size="8" fill="#333">Complexity</text>
+  <text x="671" y="991" text-anchor="middle" font-size="8" fill="#333">Index Hints</text>
+  <text x="671" y="1024" text-anchor="middle" font-size="7.5" fill="#777">perf_validator.py</text>
+
+  <!-- fan-in from agent bottoms (y=1032) to aggregator (y=1048) -->
+  <line x1="153" y1="1032" x2="316" y2="1048" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="332" y1="1032" x2="358" y2="1048" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="514" y1="1032" x2="418" y2="1048" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="671" y1="1032" x2="454" y2="1048" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+
+  <!-- Result Aggregator bar: y=1048, height=18 → bottom=1066 -->
+  <rect x="256" y="1048" width="258" height="18" rx="1" fill="#e8e8e8" stroke="#555" stroke-width="0.8"/>
+  <text x="385" y="1061" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#000">Result Aggregator · AND Logic · Error Collection</text>
+
+  <!-- retry path on the left side from validation back up to LLM generator -->
+  <path d="M 72 988 C 40 988 40 762 158 762" stroke="#555" stroke-width="0.8" stroke-dasharray="3 2" fill="none" marker-end="url(#arrowGray)"/>
+  <text x="32" y="878" font-size="7.5" fill="#555" font-style="italic" text-anchor="middle" transform="rotate(-90,32,878)">fail · retry</text>
+
+  <!-- arrow out of validation -->
+  <line x1="385" y1="1066" x2="385" y2="1088" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="398" y="1080" font-size="8" fill="#333" font-style="italic">passed</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION: EXPLANATION + OUTPUT               -->
+  <!-- outer rect: y=1088, height=200 → bottom=1288 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="60" y="1088" width="700" height="200" rx="2" fill="#fafafa" stroke="#aaa" stroke-width="0.8"/>
+  <text x="72" y="1103" font-size="8.5" font-weight="bold" fill="#555" letter-spacing="1">EXPLANATION + OUTPUT</text>
+
+  <!-- Explanation Orchestrator: y=1110, height=36 → bottom=1146 -->
+  <rect x="230" y="1110" width="310" height="36" rx="2" fill="#e8e8e8" stroke="#000" stroke-width="1.1"/>
+  <text x="385" y="1126" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#000">Explanation Orchestrator</text>
+  <text x="385" y="1140" text-anchor="middle" font-size="8.5" fill="#333">Async Parallel Execution</text>
+
+  <!-- fan-out to 3 agents (y=1146 → y=1164) -->
+  <line x1="320" y1="1146" x2="198" y2="1164" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="385" y1="1146" x2="385" y2="1164" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="452" y1="1146" x2="580" y2="1164" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+
+  <!-- Explanation Generator: y=1164, height=90 → bottom=1254 -->
+  <!-- title y=1180, divider y=1184, line1 y=1198, line2 y=1212, file y=1246 -->
+  <rect x="82" y="1164" width="230" height="90" rx="2" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="197" y="1180" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#000">Explanation Generator</text>
+  <line x1="97" y1="1184" x2="297" y2="1184" stroke="#000" stroke-width="0.4"/>
+  <text x="197" y="1198" text-anchor="middle" font-size="8" fill="#333">Natural Language Description</text>
+  <text x="197" y="1212" text-anchor="middle" font-size="8" fill="#333">Step-by-Step Breakdown</text>
+  <text x="197" y="1246" text-anchor="middle" font-size="7.5" fill="#777">explanation_agent.py</text>
+
+  <!-- Safety Assessor: y=1164, height=90 → bottom=1254 -->
+  <rect x="322" y="1164" width="126" height="90" rx="2" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="385" y="1180" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#000">Safety Assessor</text>
+  <line x1="337" y1="1184" x2="433" y2="1184" stroke="#000" stroke-width="0.4"/>
+  <text x="385" y="1198" text-anchor="middle" font-size="8" fill="#333">4D Scoring</text>
+  <text x="385" y="1212" text-anchor="middle" font-size="8" fill="#333">0–4 per Dimension</text>
+  <text x="385" y="1246" text-anchor="middle" font-size="7.5" fill="#777">safety_report_agent.py</text>
+
+  <!-- Optimization Advisor: y=1164, height=90 → bottom=1254 -->
+  <rect x="458" y="1164" width="222" height="90" rx="2" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="569" y="1180" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#000">Optimization Advisor</text>
+  <line x1="473" y1="1184" x2="665" y2="1184" stroke="#000" stroke-width="0.4"/>
+  <text x="569" y="1198" text-anchor="middle" font-size="8" fill="#333">Performance Heuristics</text>
+  <text x="569" y="1212" text-anchor="middle" font-size="8" fill="#333">Index Suggestions</text>
+  <text x="569" y="1246" text-anchor="middle" font-size="7.5" fill="#777">optimization_agent.py</text>
+
+  <!-- fan-in from agent bottoms (y=1254) to output box (y=1272) -->
+  <line x1="197" y1="1254" x2="320" y2="1272" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="385" y1="1254" x2="385" y2="1272" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+  <line x1="569" y1="1254" x2="452" y2="1272" stroke="#000" stroke-width="0.9" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FINAL OUTPUT BOX                            -->
+  <!-- y=1272, height=60 → bottom=1332            -->
+  <!-- title y=1289, divider y=1294, line1 y=1308, line2 y=1322 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="195" y="1272" width="380" height="60" rx="2" fill="#fff" stroke="#000" stroke-width="1.8"/>
+  <text x="385" y="1289" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#000">Structured Output</text>
+  <line x1="213" y1="1294" x2="557" y2="1294" stroke="#000" stroke-width="0.5"/>
+  <text x="385" y="1308" text-anchor="middle" font-size="9" fill="#333">SQL Query · Explanation · Safety Score · Index Hints</text>
+  <text x="385" y="1322" text-anchor="middle" font-size="8.5" fill="#555">JSON / CLI formatted result</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- EXTERNAL SERVICES annotation (right margin) -->
+  <!-- ═══════════════════════════════════════════ -->
+  <line x1="764" y1="716" x2="764" y2="1140" stroke="#bbb" stroke-width="0.7" stroke-dasharray="3 2"/>
+  <rect x="766" y="820" width="44" height="160" rx="2" fill="#f5f5f5" stroke="#bbb" stroke-width="0.7"/>
+  <!-- rotated label centred in that rect: cx=788, cy=900 -->
+  <text x="788" y="860" text-anchor="middle" font-size="8" fill="#555" transform="rotate(90,788,900)">OpenRouter API · GPT-4o-mini · text-embedding-3-small</text>
+  <line x1="764" y1="762" x2="744" y2="762" stroke="#bbb" stroke-width="0.7" stroke-dasharray="2 2"/>
+  <line x1="764" y1="1110" x2="744" y2="1110" stroke="#bbb" stroke-width="0.7" stroke-dasharray="2 2"/>
+  <text x="766" y="808" font-size="7" fill="#999" font-style="italic">API calls</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CAPTION                                     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <line x1="60" y1="1348" x2="760" y2="1348" stroke="#000" stroke-width="0.5"/>
+  <text x="410" y="1364" text-anchor="middle" font-size="9" fill="#333">Fig. 1. End-to-end architecture of the NL2SQL system. Solid borders denote primary agents; dashed borders denote auxiliary</text>
+  <text x="410" y="1378" text-anchor="middle" font-size="9" fill="#333">components. Signal weights in the discovery layer are empirically tuned on the Spider benchmark dataset.</text>
+
+</svg>
