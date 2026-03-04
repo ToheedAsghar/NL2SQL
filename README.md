@@ -31,7 +31,7 @@ A sophisticated **multi-agent orchestration system** that converts natural langu
 
 <div align="center">
 
-<img src="nl2sql-architecture.svg" alt="NL2SQL Multi-Agent System Architecture" width="100%"/>
+<img src="Assets/nl2sql-architecture.svg" alt="NL2SQL Multi-Agent System Architecture" width="100%"/>
 
 <!-- <sub><i>Figure 1: End-to-end pipeline architecture — LangGraph-orchestrated multi-agent system with parallel signal discovery, N-candidate generation, 4-stage validation, and explainable output.</i></sub> -->
 
