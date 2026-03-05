@@ -8,8 +8,8 @@ GATE LAYER
 """
 
 import logging
-from models.schemas import ScoredTable, GateResult
-from config.settings import DISCOVERY_TOP_K
+from nl2sql_agents.models.schemas import ScoredTable, GateResult
+from nl2sql_agents.config.settings import DISCOVERY_TOP_K
 
 logger = logging.getLogger(__name__)
 

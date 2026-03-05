@@ -11,7 +11,7 @@ ORCHESTRATOR - LANGGRAPH
 - explain           -> PARALLEL
 """
 
-from models.schemas import GraphState
+from nl2sql_agents.models.schemas import GraphState
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
 

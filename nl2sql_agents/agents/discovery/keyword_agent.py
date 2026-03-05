@@ -8,7 +8,7 @@ Extract Meaningful tokens from user query and fuzzy-matches aginst table names a
 import re
 import logging
 from difflib import SequenceMatcher
-from models.schemas import TableMetaData
+from nl2sql_agents.models.schemas import TableMetaData
 
 logger = logging.getLogger(__name__)
 

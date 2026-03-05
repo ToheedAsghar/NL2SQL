@@ -10,10 +10,10 @@ runs PARALLEL - 3 output tasks concurrently:
 import asyncio
 import logging
 
-from agents.explainer.explanation_agent import ExplanationAgent
-from agents.explainer.optimization_agent import OptimizationAgent
-from agents.explainer.safety_report_agent import SafetyReportAgent
-from models.schemas import SQLCandidate, CandidateValidationResult, ExplainerOutput
+from nl2sql_agents.agents.explainer.explanation_agent import ExplanationAgent
+from nl2sql_agents.agents.explainer.optimization_agent import OptimizationAgent
+from nl2sql_agents.agents.explainer.safety_report_agent import SafetyReportAgent
+from nl2sql_agents.models.schemas import SQLCandidate, CandidateValidationResult, ExplainerOutput
 
 logger = logging.getLogger(__name__)
 

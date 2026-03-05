@@ -3,7 +3,7 @@ OPTIMIZATION AGENT - LLM SUGGESTS INDEX/PERFORMANCE IMPROVMENTS
 """
 
 import logging
-from agents.base_agent import BaseAgent
+from nl2sql_agents.agents.base_agent import BaseAgent
 
 logger = logging.getLogger(__name__)
 

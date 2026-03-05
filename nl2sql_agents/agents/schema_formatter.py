@@ -5,8 +5,8 @@ TAKES TOP-K TABLES AND FORMATS THEM INTO A DDL-STYLE SCHEMA PROMPT
 """
 
 import logging
-from models.schemas import TableMetaData, FormattedSchema
-from agents.base_agent import BaseAgent
+from nl2sql_agents.models.schemas import TableMetaData, FormattedSchema
+from nl2sql_agents.agents.base_agent import BaseAgent
 
 logger = logging.getLogger(__name__)
 

@@ -13,8 +13,8 @@ import asyncio
 import logging
 import aiosqlite
 
-from config.settings import DB_PATH, DB_TYPE
-from models.schemas import TableMetaData, ColumnMetaData
+from nl2sql_agents.config.settings import DB_PATH, DB_TYPE
+from nl2sql_agents.models.schemas import TableMetaData, ColumnMetaData
 
 logger = logging.getLogger(__name__)
 

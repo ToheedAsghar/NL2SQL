@@ -3,7 +3,7 @@ Explanation Agent - Translates SQL into plain English
 """
 
 import logging
-from agents.base_agent import BaseAgent
+from nl2sql_agents.agents.base_agent import BaseAgent
 
 logger = logging.getLogger(__name__)
 

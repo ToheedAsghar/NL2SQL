@@ -17,8 +17,8 @@ from collections import defaultdict
 from .keyword_agent import KeywordAgent
 from .fk_graph_agent import FKGraphAgent
 from .semantic_agent import SemanticAgent
-from config.settings import KEYWORD_PRE_FILTER_TOP_N
-from models.schemas import TableMetaData, DiscoveryResult, ScoredTable
+from nl2sql_agents.config.settings import KEYWORD_PRE_FILTER_TOP_N
+from nl2sql_agents.models.schemas import TableMetaData, DiscoveryResult, ScoredTable
 
 logger = logging.getLogger(__name__)
 

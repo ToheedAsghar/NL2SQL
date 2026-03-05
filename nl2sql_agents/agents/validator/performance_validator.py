@@ -12,8 +12,8 @@ Returns PASS / WARN (score 0.5) / FAIL (score 0.0)
 """
 
 import logging
-from agents.base_agent import BaseAgent
-from models.schemas import ValidatorCheckResult
+from nl2sql_agents.agents.base_agent import BaseAgent
+from nl2sql_agents.models.schemas import ValidatorCheckResult
 
 logger = logging.getLogger(__name__)
 
