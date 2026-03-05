@@ -49,7 +49,7 @@ A sophisticated **multi-agent orchestration system** that converts natural langu
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/NL2SQL.git
+   git clone https://github.com/ToheedAsghar/NL2SQL.git
    cd NL2SQL
    ```
 
@@ -199,50 +199,75 @@ FK_GRAPH_WEIGHT=0.20   # Foreign key relationships
 
 ```
 NL2SQL/
-├── agents/                    # Agent modules
-│   ├── base_agent.py         # Base agent with LLM calling
-│   ├── query_generator.py    # SQL generation agent
-│   ├── schema_formatter.py   # Schema formatting agent
-│   ├── discovery/            # Table discovery agents
-│   │   ├── discovery_agent.py    # Multi-signal orchestrator
-│   │   ├── keyword_agent.py      # Keyword matching
-│   │   ├── semantic_agent.py     # Embedding-based search
-│   │   └── fk_graph_agent.py     # Foreign key analysis
-│   ├── validator/            # Validation agents
-│   │   ├── validator_agent.py    # Orchestrator
-│   │   ├── syntax_validator.py   # SQL syntax check
-│   │   ├── logic_validator.py    # Logical correctness
-│   │   ├── security_validator.py # SQL injection check
+├── agents/                        # Agent modules
+│   ├── __init__.py
+│   ├── base_agent.py              # Base agent with LLM calling
+│   ├── query_generator.py         # SQL generation agent
+│   ├── schema_formatter.py        # Schema formatting agent
+│   ├── discovery/                 # Table discovery agents
+│   │   ├── __init__.py
+│   │   ├── discovery_agent.py     # Multi-signal orchestrator
+│   │   ├── keyword_agent.py       # Keyword matching
+│   │   ├── semantic_agent.py      # Embedding-based search
+│   │   └── fk_graph_agent.py      # Foreign key analysis
+│   ├── validator/                 # Validation agents
+│   │   ├── __init__.py
+│   │   ├── validator_agent.py     # Orchestrator
+│   │   ├── syntax_validator.py    # SQL syntax check
+│   │   ├── logic_validator.py     # Logical correctness
+│   │   ├── security_validator.py  # SQL injection check
 │   │   └── performance_validator.py # Performance analysis
-│   └── explainer/            # Explanation agents
-│       ├── explainer_agent.py    # Orchestrator
-│       ├── explanation_agent.py  # Query explanation
+│   └── explainer/                 # Explanation agents
+│       ├── __init__.py
+│       ├── explainer_agent.py     # Orchestrator
+│       ├── explanation_agent.py   # Query explanation
 │       ├── safety_report_agent.py # Safety scoring
-│       └── optimization_agent.py # Optimization tips
-├── orchestrator/             # LangGraph pipeline
-│   ├── pipeline.py          # Main graph definition
-│   └── nodes.py             # Node implementations
-├── filters/                 # Pre-processing filters
-│   ├── gate.py             # Table gating
-│   └── security_filter.py  # Query security filter
-├── db/                     # Database layer
-│   └── connector.py        # Async SQLite connector
-├── cache/                  # Caching layer
-│   └── schema_cache.py     # Schema caching
-├── config/                 # Configuration
-│   └── settings.py         # LLM provider settings
-├── models/                 # Data models
-│   └── schemas.py          # GraphState and schemas
-├── logs/                   # Application logs (auto-created)
-├── main.py                 # CLI entry point
-├── requirements.txt        # Python dependencies
-├── .env                    # Environment configuration
-├── .gitignore             # Git ignore rules
-├── LICENSE                # MIT License
-└── README.md              # This file
+│       └── optimization_agent.py  # Optimization tips
+├── orchestrator/                  # LangGraph pipeline
+│   ├── __init__.py
+│   ├── pipeline.py                # Main graph definition
+│   └── nodes.py                   # Node implementations
+├── filters/                       # Pre-processing filters
+│   ├── __init__.py
+│   ├── gate.py                    # Table gating
+│   └── security_filter.py         # Query security filter
+├── db/                            # Database layer
+│   ├── __init__.py
+│   └── connector.py               # Async SQLite connector
+├── cache/                         # Caching layer
+│   ├── __init__.py
+│   └── schema_cache.py            # Schema caching
+├── config/                        # Configuration
+│   ├── __init__.py
+│   └── settings.py                # LLM provider settings
+├── models/                        # Data models
+│   ├── __init__.py
+│   └── schemas.py                 # GraphState and schemas
+├── data/                          # Local data assets
+│   └── spider/
+│       └── database/              # Spider dataset databases
+├── Assets/                        # Static assets
+│   ├── architecture.svg
+│   └── nl2sql-architecture.svg    # Architecture diagram
+├── logs/                          # Application logs (auto-created)
+│   └── *.log                      # Timestamped log files
+├── spider/                        # Spider benchmark files
+│   ├── dev.json
+│   ├── dev_gold.sql
+│   ├── tables.json
+│   ├── train_gold.sql
+│   ├── train_others.json
+│   ├── train_spider.json
+│   ├── README.txt
+│   └── database/                  # 200+ domain databases
+├── main.py                        # CLI entry point
+├── requirements.txt               # Python dependencies
+├── .env                           # Environment configuration
+├── .env.example                   # Example env template
+├── .gitignore                     # Git ignore rules
+├── LICENSE                        # MIT License
+└── README.md                      # This file
 ```
-
----
 
 ## How It Works
 
