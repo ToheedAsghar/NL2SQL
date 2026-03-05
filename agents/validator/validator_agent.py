@@ -90,7 +90,7 @@ class ValidatorAgent:
             return ValidationResult(
                 passed=False,
                 all_results = results,
-                retry_ctx = retry_ctx
+                retry_context = retry_ctx
             )
         
         best = max(eligible, key=lambda r: r.total_score)
