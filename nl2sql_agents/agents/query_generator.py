@@ -7,9 +7,9 @@ Agent 3 - QUERY GENERATOR (LLM)
 
 import asyncio
 import logging
-from agents.base_agent import BaseAgent
-from config.settings import N_CANDIDATES, CANDIDATE_TEMPERATURES
-from models.schemas import ChatMessage, FormattedSchema, GenerationResult, SQLCandidate
+from nl2sql_agents.agents.base_agent import BaseAgent
+from nl2sql_agents.config.settings import N_CANDIDATES, CANDIDATE_TEMPERATURES
+from nl2sql_agents.models.schemas import ChatMessage, FormattedSchema, GenerationResult, SQLCandidate
 
 logger = logging.getLogger(__name__)
 

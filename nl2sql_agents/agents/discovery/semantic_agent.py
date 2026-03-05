@@ -7,8 +7,8 @@ Return Cosine similarity scores: {table_name: similarity}
 
 import logging
 import numpy as np
-from models.schemas import TableMetaData
-from config.settings import EMBEDDING_PROVIDER
+from nl2sql_agents.models.schemas import TableMetaData
+from nl2sql_agents.config.settings import EMBEDDING_PROVIDER
 
 logger = logging.getLogger(__name__)
 

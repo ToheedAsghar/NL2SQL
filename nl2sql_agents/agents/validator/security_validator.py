@@ -8,7 +8,7 @@ BLOCKS:
 
 import re
 import logging
-from models.schemas import ValidatorCheckResult
+from nl2sql_agents.models.schemas import ValidatorCheckResult
 
 logger = logging.getLogger(__name__)
 

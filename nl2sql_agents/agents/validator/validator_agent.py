@@ -9,13 +9,13 @@ Agent 4: Validator Agent
 import asyncio
 import logging
 
-from config.settings import VALIDATION_PROVIDER
-from agents.validator.logic_validator import LogicValidator
-from agents.validator.syntax_validator import SyntaxValidator
-from agents.validator.security_validator import SecurityValidator
-from agents.validator.performance_validator import PerformanceValidator
+from nl2sql_agents.config.settings import VALIDATION_PROVIDER
+from nl2sql_agents.agents.validator.logic_validator import LogicValidator
+from nl2sql_agents.agents.validator.syntax_validator import SyntaxValidator
+from nl2sql_agents.agents.validator.security_validator import SecurityValidator
+from nl2sql_agents.agents.validator.performance_validator import PerformanceValidator
 
-from models.schemas import (
+from nl2sql_agents.models.schemas import (
     SQLCandidate, GenerationResult, CandidateValidationResult, ValidationResult
 )
 

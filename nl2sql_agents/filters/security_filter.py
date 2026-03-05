@@ -7,8 +7,8 @@ Runs in PARALLEL alongside Discovery Agent.
 """
 
 import logging
-from config.settings import DB_TYPE
-from models.schemas import TableMetaData
+from nl2sql_agents.config.settings import DB_TYPE
+from nl2sql_agents.models.schemas import TableMetaData
 
 
 logger = logging.getLogger(__name__)

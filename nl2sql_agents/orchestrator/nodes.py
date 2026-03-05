@@ -1,16 +1,16 @@
 import logging
 
-from filters.gate import GateLayer
-from db.connector import DatabaseConnector
-from cache.schema_cache import SchemaCache
-from filters.security_filter import SecurityFilter
-from models.schemas import GraphState, FinalOutput
-from agents.query_generator import QueryGeneratorAgent
-from agents.schema_formatter import SchemaFormatterAgent
-from config.settings import DB_PATH, DB_TYPE, MAX_RETRIES
-from agents.discovery.discovery_agent import DiscoveryAgent
-from agents.validator.validator_agent import ValidatorAgent
-from agents.explainer.explainer_agent import ExplainerAgent
+from nl2sql_agents.filters.gate import GateLayer
+from nl2sql_agents.db.connector import DatabaseConnector
+from nl2sql_agents.cache.schema_cache import SchemaCache
+from nl2sql_agents.filters.security_filter import SecurityFilter
+from nl2sql_agents.models.schemas import GraphState, FinalOutput
+from nl2sql_agents.agents.query_generator import QueryGeneratorAgent
+from nl2sql_agents.agents.schema_formatter import SchemaFormatterAgent
+from nl2sql_agents.config.settings import DB_PATH, DB_TYPE, MAX_RETRIES
+from nl2sql_agents.agents.discovery.discovery_agent import DiscoveryAgent
+from nl2sql_agents.agents.validator.validator_agent import ValidatorAgent
+from nl2sql_agents.agents.explainer.explainer_agent import ExplainerAgent
 
 
 logger = logging.getLogger(__name__)

@@ -5,7 +5,7 @@ No LLM calls - purely derived from check date.
 """
 
 import logging
-from models.schemas import SQLCandidate, CandidateValidationResult
+from nl2sql_agents.models.schemas import SQLCandidate, CandidateValidationResult
 
 logger = logging.getLogger(__name__)
 

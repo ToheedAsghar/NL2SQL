@@ -14,7 +14,7 @@ BFS-walk from seed tables, and scores by graph distance.
 
 import logging
 from collections import deque
-from models.schemas import TableMetaData
+from nl2sql_agents.models.schemas import TableMetaData
 
 logger = logging.getLogger(__name__)
 

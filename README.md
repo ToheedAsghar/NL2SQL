@@ -10,6 +10,8 @@
 
 A sophisticated **multi-agent orchestration system** that converts natural language queries into safe, optimized SQL using LangGraph and OpenRouter LLMs. Built with security, performance, and explainability at its core.
 
+<img src="Assets/nl2sql.gif" alt="NL2SQL Demo" width="80%"/>
+
 </div>
 
 ---
@@ -199,59 +201,64 @@ FK_GRAPH_WEIGHT=0.20   # Foreign key relationships
 
 ```
 NL2SQL/
-├── agents/                        # Agent modules
-│   ├── __init__.py
-│   ├── base_agent.py              # Base agent with LLM calling
-│   ├── query_generator.py         # SQL generation agent
-│   ├── schema_formatter.py        # Schema formatting agent
-│   ├── discovery/                 # Table discovery agents
+├── nl2sql_agents/                     # Installable Python package
+│   ├── __init__.py                    # Package version & metadata
+│   ├── cli.py                         # Rich CLI entry point
+│   ├── py.typed                       # PEP 561 typed marker
+│   ├── agents/                        # Agent modules
 │   │   ├── __init__.py
-│   │   ├── discovery_agent.py     # Multi-signal orchestrator
-│   │   ├── keyword_agent.py       # Keyword matching
-│   │   ├── semantic_agent.py      # Embedding-based search
-│   │   └── fk_graph_agent.py      # Foreign key analysis
-│   ├── validator/                 # Validation agents
+│   │   ├── base_agent.py              # Base agent with LLM calling
+│   │   ├── query_generator.py         # SQL generation agent
+│   │   ├── schema_formatter.py        # Schema formatting agent
+│   │   ├── discovery/                 # Table discovery agents
+│   │   │   ├── __init__.py
+│   │   │   ├── discovery_agent.py     # Multi-signal orchestrator
+│   │   │   ├── keyword_agent.py       # Keyword matching
+│   │   │   ├── semantic_agent.py      # Embedding-based search
+│   │   │   └── fk_graph_agent.py      # Foreign key analysis
+│   │   ├── validator/                 # Validation agents
+│   │   │   ├── __init__.py
+│   │   │   ├── validator_agent.py     # Orchestrator
+│   │   │   ├── syntax_validator.py    # SQL syntax check
+│   │   │   ├── logic_validator.py     # Logical correctness
+│   │   │   ├── security_validator.py  # SQL injection check
+│   │   │   └── performance_validator.py # Performance analysis
+│   │   └── explainer/                 # Explanation agents
+│   │       ├── __init__.py
+│   │       ├── explainer_agent.py     # Orchestrator
+│   │       ├── explanation_agent.py   # Query explanation
+│   │       ├── safety_report_agent.py # Safety scoring
+│   │       └── optimization_agent.py  # Optimization tips
+│   ├── orchestrator/                  # LangGraph pipeline
 │   │   ├── __init__.py
-│   │   ├── validator_agent.py     # Orchestrator
-│   │   ├── syntax_validator.py    # SQL syntax check
-│   │   ├── logic_validator.py     # Logical correctness
-│   │   ├── security_validator.py  # SQL injection check
-│   │   └── performance_validator.py # Performance analysis
-│   └── explainer/                 # Explanation agents
+│   │   ├── pipeline.py                # Main graph definition
+│   │   └── nodes.py                   # Node implementations
+│   ├── filters/                       # Pre-processing filters
+│   │   ├── __init__.py
+│   │   ├── gate.py                    # Table gating
+│   │   └── security_filter.py         # Query security filter
+│   ├── db/                            # Database layer
+│   │   ├── __init__.py
+│   │   └── connector.py               # Async SQLite connector
+│   ├── cache/                         # Caching layer
+│   │   ├── __init__.py
+│   │   └── schema_cache.py            # Schema caching
+│   ├── config/                        # Configuration
+│   │   ├── __init__.py
+│   │   └── settings.py                # LLM provider settings
+│   └── models/                        # Data models
 │       ├── __init__.py
-│       ├── explainer_agent.py     # Orchestrator
-│       ├── explanation_agent.py   # Query explanation
-│       ├── safety_report_agent.py # Safety scoring
-│       └── optimization_agent.py  # Optimization tips
-├── orchestrator/                  # LangGraph pipeline
-│   ├── __init__.py
-│   ├── pipeline.py                # Main graph definition
-│   └── nodes.py                   # Node implementations
-├── filters/                       # Pre-processing filters
-│   ├── __init__.py
-│   ├── gate.py                    # Table gating
-│   └── security_filter.py         # Query security filter
-├── db/                            # Database layer
-│   ├── __init__.py
-│   └── connector.py               # Async SQLite connector
-├── cache/                         # Caching layer
-│   ├── __init__.py
-│   └── schema_cache.py            # Schema caching
-├── config/                        # Configuration
-│   ├── __init__.py
-│   └── settings.py                # LLM provider settings
-├── models/                        # Data models
-│   ├── __init__.py
-│   └── schemas.py                 # GraphState and schemas
-├── data/                          # Local data assets
+│       └── schemas.py                 # GraphState and schemas
+├── data/                              # Local data assets
 │   └── spider/
-│       └── database/              # Spider dataset databases
-├── Assets/                        # Static assets
+│       └── database/                  # Spider dataset databases
+├── Assets/                            # Static assets
 │   ├── architecture.svg
-│   └── nl2sql-architecture.svg    # Architecture diagram
-├── logs/                          # Application logs (auto-created)
-│   └── *.log                      # Timestamped log files
-├── spider/                        # Spider benchmark files
+│   ├── nl2sql.gif                     # Demo GIF
+│   └── nl2sql-architecture.svg        # Architecture diagram
+├── logs/                              # Application logs (auto-created)
+│   └── *.log                          # Timestamped log files
+├── spider/                            # Spider benchmark files
 │   ├── dev.json
 │   ├── dev_gold.sql
 │   ├── tables.json
@@ -259,14 +266,17 @@ NL2SQL/
 │   ├── train_others.json
 │   ├── train_spider.json
 │   ├── README.txt
-│   └── database/                  # 200+ domain databases
-├── main.py                        # CLI entry point
-├── requirements.txt               # Python dependencies
-├── .env                           # Environment configuration
-├── .env.example                   # Example env template
-├── .gitignore                     # Git ignore rules
-├── LICENSE                        # MIT License
-└── README.md                      # This file
+│   └── database/                      # 200+ domain databases
+├── main.py                            # Legacy CLI entry point
+├── pyproject.toml                     # Package metadata & build config
+├── requirements.txt                   # Python dependencies
+├── FAME_PLAN.md                       # FAME methodology plan
+├── MEMORY_IMPLEMENTATION.md           # Memory system design doc
+├── .env                               # Environment configuration
+├── .env.example                       # Example env template
+├── .gitignore                         # Git ignore rules
+├── LICENSE                            # MIT License
+└── README.md                          # This file
 ```
 
 ## How It Works
