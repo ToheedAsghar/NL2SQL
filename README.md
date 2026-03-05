@@ -5,6 +5,7 @@
 
 [![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 [![LangGraph](https://img.shields.io/badge/framework-LangGraph-green.svg)](https://langchain-ai.github.io/langgraph/)
+[![PyPI version](https://img.shields.io/pypi/v/nl2sql-agents.svg)](https://pypi.org/project/nl2sql-agents/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
@@ -48,6 +49,13 @@ A sophisticated **multi-agent orchestration system** that converts natural langu
 - SQLite databases (Spider dataset recommended)
 
 ### Installation
+
+**Quick Install (PyPI)**
+```bash
+pip install nl2sql-agents
+```
+
+**Or install from source:**
 
 1. **Clone the repository**
    ```bash
@@ -398,7 +406,7 @@ pytest tests/
 pytest tests/integration/
 
 # Coverage report
-pytest --cov=agents --cov=orchestrator --cov-report=html
+pytest --cov=nl2sql_agents --cov-report=html
 ```
 
 ### Code Style
@@ -413,7 +421,7 @@ black .
 ruff check .
 
 # Type checking
-mypy agents/ orchestrator/
+mypy nl2sql_agents/
 ```
 
 ---
@@ -435,8 +443,8 @@ Contributions are welcome! Please follow these steps:
 ### Development Setup
 
 ```bash
-# Install dev dependencies
-pip install -r requirements-dev.txt
+# Install in editable mode with dev dependencies
+pip install -e ".[dev]"
 
 # Install pre-commit hooks
 pre-commit install
@@ -493,6 +501,6 @@ If you find this project useful, please consider giving it a star! It helps othe
 
 **Built with ❤️ using LangGraph and OpenRouter**
 
-[Report Bug](https://github.com/yourusername/NL2SQL/issues) · [Request Feature](https://github.com/yourusername/NL2SQL/issues) · [Documentation](https://github.com/yourusername/NL2SQL/wiki)
+[Report Bug](https://github.com/ToheedAsghar/NL2SQL/issues) · [Request Feature](https://github.com/ToheedAsghar/NL2SQL/issues) · [Documentation](https://github.com/ToheedAsghar/NL2SQL#readme)
 
 </div>
