@@ -48,14 +48,83 @@ A sophisticated **multi-agent orchestration system** that converts natural langu
 - OpenRouter API key (or compatible LLM provider)
 - SQLite databases (Spider dataset recommended)
 
-### Installation
+### Installation & Usage (PyPI)
 
-**Quick Install (PyPI)**
+Install the package from [PyPI](https://pypi.org/project/nl2sql-agents/):
+
 ```bash
 pip install nl2sql-agents
 ```
 
-**Or install from source:**
+#### 1. Configure Environment Variables
+
+After installing, create a `.env` file in your working directory (or export the variables in your shell):
+
+```bash
+# LLM Provider Configuration (required)
+OPENAI_API_KEY=sk-or-v1-your-openrouter-api-key
+OPENAI_BASE_URL=https://openrouter.ai/api/v1
+OPENAI_MODEL=openai/gpt-4o-mini
+OPENAI_EMBEDDING_MODEL=openai/text-embedding-3-small
+
+# Database Configuration (required)
+DB_TYPE=sqlite
+DB_PATH=/absolute/path/to/your/database.sqlite
+```
+
+> **Note:** Any OpenAI-compatible API provider works — just set the base URL and API key accordingly.
+
+#### 2. Point to Your SQLite Database
+
+Set `DB_PATH` to the **absolute path** of any SQLite database you want to query:
+
+```bash
+# Example: your own database
+DB_PATH=/home/user/data/sales.sqlite
+
+# Example: Spider benchmark dataset
+DB_PATH=/home/user/spider/database/concert_singer/concert_singer.sqlite
+```
+
+#### 3. Run the CLI
+
+The `nl2sql` command is available globally after installation:
+
+```bash
+# Interactive REPL mode
+nl2sql
+
+# One-shot query
+nl2sql "Show me all singers from France"
+
+# Override the database path on the fly
+nl2sql --db /path/to/other.sqlite "List all employees"
+
+# Check version
+nl2sql --version
+```
+
+#### Minimal Example
+
+```bash
+pip install nl2sql-agents
+
+export OPENAI_API_KEY="sk-or-v1-your-key"
+export OPENAI_BASE_URL="https://openrouter.ai/api/v1"
+export OPENAI_MODEL="openai/gpt-4o-mini"
+export OPENAI_EMBEDDING_MODEL="openai/text-embedding-3-small"
+export DB_TYPE="sqlite"
+export DB_PATH="/path/to/your/database.sqlite"
+
+nl2sql "What are the top 5 products by revenue?"
+```
+
+---
+
+### Install from Source (Development)
+
+<details>
+<summary>Click to expand source installation steps</summary>
 
 1. **Clone the repository**
    ```bash
@@ -74,7 +143,7 @@ pip install nl2sql-agents
    pip install -r requirements.txt
    ```
 
-4. **Download Spider dataset**
+4. **Download Spider dataset** *(optional — for benchmarking)*
    
    The Spider dataset (877MB) is not included in the repository. Download it from the official source:
    
@@ -113,14 +182,16 @@ pip install nl2sql-agents
    python main.py
    ```
 
+</details>
+
 ---
 
 ##  Usage Examples
 
-### Interactive Mode
+### Interactive Mode (CLI)
 
 ```bash
-python main.py
+nl2sql
 ```
 
 ```
