@@ -42,8 +42,8 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Project cache/output
-cache/
+# Project cache/output (top-level only, not nl2sql_agents/cache/)
+/cache/
 
 # Large database files (download separately - see README.md)
 spider/
