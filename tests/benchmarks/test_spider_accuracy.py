@@ -35,6 +35,7 @@ import logging
 import os
 import re
 import sqlite3
+import sys
 import time
 from pathlib import Path
 from typing import Optional
@@ -307,6 +308,11 @@ async def run_benchmark(
     data = load_spider_dataset(dataset, limit=limit)
     bench = BenchmarkResult(dataset)
 
+    total_queries = len(data)
+    print(f"\n  Starting benchmark: {dataset} ({total_queries} queries)")
+    print(f"  {'─' * 56}")
+    sys.stdout.flush()
+
     for i, entry in enumerate(data):
         db_id = entry["db_id"]
         question = entry["question"]
@@ -335,16 +341,22 @@ async def run_benchmark(
             error=error,
         )
 
-        # Progress tick
-        if (i + 1) % 10 == 0 or (i + 1) == len(data):
-            logger.info(
-                "[%d/%d] EX so far: %d/%d = %.1f%%",
-                i + 1,
-                len(data),
-                bench.exec_correct,
-                bench.total,
-                bench.exec_accuracy * 100,
-            )
+        # Live progress — prints every query so it's clear it's working
+        elapsed = time.time() - bench._start
+        status = "✓" if ex else "✗"
+        eta = (elapsed / (i + 1)) * (total_queries - i - 1)
+        eta_min, eta_sec = divmod(int(eta), 60)
+        eta_hr, eta_min = divmod(eta_min, 60)
+        eta_str = f"{eta_hr}h{eta_min:02d}m" if eta_hr else f"{eta_min}m{eta_sec:02d}s"
+
+        print(
+            f"  [{i+1:>{len(str(total_queries))}}/{total_queries}] "
+            f"{status} EX={bench.exec_accuracy:.1%}  "
+            f"db={db_id:<25s}  "
+            f"ETA={eta_str}  "
+            f"Q={question[:40]}",
+            flush=True,
+        )
 
     if save_to:
         bench.save_json(save_to)
