@@ -85,6 +85,11 @@ Examples:
         action="store_true",
         help="Print each query's predicted vs gold SQL",
     )
+    parser.add_argument(
+        "--no-resume",
+        action="store_true",
+        help="Start fresh instead of resuming from previous results",
+    )
     args = parser.parse_args()
 
     # Validate API key
@@ -123,7 +128,7 @@ Examples:
     # Run
     save_to = Path(args.output) if args.output else None
     result = asyncio.run(
-        run_benchmark(args.dataset, limit=args.limit, save_to=save_to)
+        run_benchmark(args.dataset, limit=args.limit, save_to=save_to, resume=not args.no_resume)
     )
 
     # Print summary

@@ -166,6 +166,7 @@ async def run_single_query(db_path: str, question: str) -> str:
     from nl2sql_agents.agents.schema_formatter import SchemaFormatterAgent
     from nl2sql_agents.agents.query_generator import QueryGeneratorAgent
     from nl2sql_agents.agents.validator.validator_agent import ValidatorAgent
+    from nl2sql_agents.config.settings import MAX_RETRIES
 
     connector = DatabaseConnector(db_path)
     cache = SchemaCache()
@@ -197,14 +198,26 @@ async def run_single_query(db_path: str, question: str) -> str:
     # 4. Format schema
     formatted = await formatter.format(gate_result.tables)
 
-    # 5. Generate SQL candidates
-    generation = await generator.generate(formatted, question)
+    # 5. Generate → Validate → Retry loop (matches real pipeline)
+    retry_context = None
+    for attempt in range(1, MAX_RETRIES + 2):
+        generation = await generator.generate(
+            formatted, question, retry_context=retry_context
+        )
+        validation = await validator.validate(generation, question)
 
-    # 6. Validate & pick best
-    validation = await validator.validate(generation, question)
+        if validation.best_candidate:
+            return validation.best_candidate.sql
 
-    if validation.best_candidate:
-        return validation.best_candidate.sql
+        retry_context = validation.retry_context
+        logger.info("Benchmark retry %d: %s", attempt, retry_context)
+
+    # All retries exhausted — return best-effort from last attempt
+    if validation.all_results:
+        # Pick highest-scored even if disqualified
+        best = max(validation.all_results, key=lambda r: r.total_score)
+        if best.candidate.sql:
+            return best.candidate.sql
     return ""
 
 
@@ -298,22 +311,61 @@ async def run_benchmark(
     dataset: str = "dev",
     limit: int | None = None,
     save_to: Path | None = None,
+    resume: bool = True,
 ) -> BenchmarkResult:
     """
     Main benchmark driver.
 
     Loads the specified Spider dataset, runs each query through the pipeline,
     and compares against the gold SQL using both Execution Accuracy and Exact Match.
+
+    If *resume* is True and *save_to* points to an existing results file,
+    previously completed queries are loaded and execution continues from where
+    it left off.
     """
     data = load_spider_dataset(dataset, limit=limit)
     bench = BenchmarkResult(dataset)
 
+    # ── Resume support ──────────────────────────────────────────────
+    skip_count = 0
+    if resume and save_to and save_to.exists():
+        try:
+            with open(save_to) as f:
+                prev = json.load(f)
+            prev_results = prev.get("results", [])
+            skip_count = len(prev_results)
+            # Replay previous results into bench so stats are correct
+            for r in prev_results:
+                bench.record(
+                    question=r["question"],
+                    db_id=r["db_id"],
+                    gold_sql=r["gold_sql"],
+                    predicted_sql=r["predicted_sql"],
+                    exec_match=r["exec_match"],
+                    exact_match=r["exact_match"],
+                    error=r.get("error"),
+                )
+        except (json.JSONDecodeError, KeyError):
+            skip_count = 0  # corrupted file — start fresh
+
     total_queries = len(data)
-    print(f"\n  Starting benchmark: {dataset} ({total_queries} queries)")
+    if skip_count >= total_queries:
+        print(f"\n  All {total_queries} queries already completed. Nothing to do.")
+        return bench
+
+    if skip_count > 0:
+        print(f"\n  Resuming benchmark: {dataset} — skipping {skip_count} already-completed queries")
+        print(f"  Current EX: {bench.exec_accuracy:.1%}  ({bench.exec_correct}/{bench.total})")
+    else:
+        print(f"\n  Starting benchmark: {dataset} ({total_queries} queries)")
     print(f"  {'─' * 56}")
     sys.stdout.flush()
 
     for i, entry in enumerate(data):
+        # Skip queries that were already evaluated in a previous run
+        if i < skip_count:
+            continue
+
         db_id = entry["db_id"]
         question = entry["question"]
         gold_sql = entry["query"]
@@ -344,7 +396,12 @@ async def run_benchmark(
         # Live progress — prints every query so it's clear it's working
         elapsed = time.time() - bench._start
         status = "✓" if ex else "✗"
-        eta = (elapsed / (i + 1)) * (total_queries - i - 1)
+        remaining = total_queries - i - 1
+        if i > skip_count:
+            avg_time = elapsed / (i - skip_count + 1)
+            eta = avg_time * remaining
+        else:
+            eta = 0
         eta_min, eta_sec = divmod(int(eta), 60)
         eta_hr, eta_min = divmod(eta_min, 60)
         eta_str = f"{eta_hr}h{eta_min:02d}m" if eta_hr else f"{eta_min}m{eta_sec:02d}s"
@@ -358,8 +415,10 @@ async def run_benchmark(
             flush=True,
         )
 
-    if save_to:
-        bench.save_json(save_to)
+        # Incremental save — persist results after every query so
+        # progress is never lost even if the run is interrupted
+        if save_to:
+            bench.save_json(save_to)
 
     return bench
 

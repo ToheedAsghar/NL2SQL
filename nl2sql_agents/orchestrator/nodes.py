@@ -121,6 +121,7 @@ def should_retry(state: GraphState) -> str:
 
 async def explain_node(state: GraphState) -> dict:
     best = state['validation'].best_candidate
+    
     output = await explainer_agent.explain(
         best, state['validation'].all_results,
         state['user_query'],
