@@ -29,6 +29,10 @@ explainer_agent = ExplainerAgent()
 
 async def load_schema(state: GraphState) -> dict:
     """Load Tables from cache or Introspect the database"""
+
+    # temporary disabling the cache.
+    cache.invalidate(DB_PATH)
+    
     tables = cache.get(DB_PATH)
     
     if tables is None:
@@ -92,6 +96,12 @@ async def generate_sql_node(state: GraphState) -> dict:
 
 async def validate_node(state: GraphState) -> dict:
     validation = await validator_agent.validate(state['generation'], state['user_query'])
+    
+    all_results = validation.all_results
+    candidates = [c.candidate for c in all_results]
+    best = max(all_results, key=lambda r: r.total_score)
+
+    validation.best_candidate = best.candidate
 
     if not validation.passed:
         return {
@@ -113,6 +123,7 @@ def should_retry(state: GraphState) -> str:
     if state['attempt'] > MAX_RETRIES + 1:
         # -- not raising implementation error --- #
         logger.info("SHOULD_RETRY: attempts exceeded but validation not passed")
+
         return 'explain'
 
     logger.warning("Retry %d: %s", state["attempt"] - 1, state.get("retry_context"))
