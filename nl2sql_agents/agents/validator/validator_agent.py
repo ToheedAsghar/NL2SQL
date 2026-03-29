@@ -21,7 +21,7 @@ from nl2sql_agents.models.schemas import (
 
 
 logger = logging.getLogger(__name__)
-HARD_FAIL_CHECKS = {"security", "syntax"}
+HARD_FAIL_CHECKS = {"security", "syntax", "logic"}
 
 class ValidatorAgent:
     def __init__(self) -> None:
@@ -52,6 +52,9 @@ class ValidatorAgent:
         )
 
         checks = [sec, syn, logic, perf]
+
+        for check in checks:
+            logger.info(f"ValidatorAgent: [{candidate.prompt_variant.upper()}] [{check.check_name.upper()}] : {check.score} - {check.details}")
 
         disqualified = any(
             not c.passed for c in checks if c.check_name in HARD_FAIL_CHECKS
