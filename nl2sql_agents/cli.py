@@ -19,6 +19,9 @@ import textwrap
 import warnings
 from datetime import datetime
 from pathlib import Path
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Suppress Pydantic V1 compatibility warning before any imports touch it
 warnings.filterwarnings(
@@ -124,6 +127,7 @@ def _print_section(title: str, body: str, *, style: str = "white", border: str =
 def _print_scores(candidate_scores) -> None:
     """Render validation scores as a compact table."""
     if not candidate_scores:
+        logger.info('No Candidate Scores')
         return
 
     table = Table(
