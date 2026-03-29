@@ -31,7 +31,7 @@ async def load_schema(state: GraphState) -> dict:
     """Load Tables from cache or Introspect the database"""
 
     # temporary disabling the cache.
-    cache.invalidate(DB_PATH)
+    # cache.invalidate(DB_PATH)
     
     tables = cache.get(DB_PATH)
     
