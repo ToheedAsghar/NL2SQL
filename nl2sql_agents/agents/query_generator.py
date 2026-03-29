@@ -29,13 +29,15 @@ RULES:
 - Prefer COUNT(*) for simple counting with INNER JOINs. Do not use DISTINCT unless uniqueness is implied.
 - NO ALIASES: DO NOT use decorative aliases (AS alias_name) for any columns or aggregations in the SELECT clause.
 - When the prompt asks for "most", "least", "oldest", "youngest", "largest", or "smallest", you MUST use ORDER BY ... DESC/ASC LIMIT 1. Do not write CTEs or subqueries to handle ties unless the prompt explicitly says "including ties" or "all [entities] that share the maximum".
-- STRICT COLUMN ORDER: You MUST place columns in the SELECT clause in the EXACT order they are mentioned in the natural language prompt. Do not automatically put GROUP BY columns first.
+- STRICT COLUMN ORDER: You MUST place columns in the SELECT clause in the EXACT left-to-right order they appear in the prompt. When a prompt says "Find the [aggregation] for each [category]", the [aggregation] MUST come first in the SELECT clause, followed by the [category]. NEVER put the GROUP BY category first unless it is literally the first thing requested.
+- STRICT FOREIGN KEYS: ONLY join tables using explicitly defined Foreign Key relationships provided in the schema context. DO NOT guess join conditions based on similar-sounding column names (like Id and MakeId). If you have to bridge two tables, you MUST follow the exact foreign key chain.
+- STRICT DATA TYPES: Pay close attention to column data types. If a column is defined as a string (VARCHAR, TEXT, etc.), you MUST wrap your WHERE clause values in single quotes (e.g., year = '1970'). Do not use integers for string columns.
 
 CONTRASTIVE EXAMPLES:
 
-Prompt: "List the maximum weight and pet type."
-INCORRECT (Pre-training bias): SELECT PetType, MAX(weight) FROM Pets GROUP BY PetType
-CORRECT (Strict order): SELECT MAX(weight), PetType FROM Pets GROUP BY PetType
+Prompt: "Find the average and maximum age for each type of pet."
+INCORRECT (Pre-training bias): SELECT PetType, AVG(pet_age), MAX(pet_age) FROM Pets GROUP BY PetType
+CORRECT (Strict left-to-right order): SELECT AVG(pet_age), MAX(pet_age), PetType FROM Pets GROUP BY PetType
 
 Prompt: "Find the number of concerts happened in the stadium with the highest capacity."
 INCORRECT (Subqueries & aliases): SELECT COUNT(concert_ID) AS num FROM concert JOIN stadium ON concert.stadium_id = stadium.stadium_id WHERE capacity = (SELECT MAX(capacity) FROM stadium)

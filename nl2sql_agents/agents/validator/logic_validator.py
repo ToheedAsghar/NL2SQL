@@ -38,8 +38,14 @@ OUTPUT FORMAT:
 You MUST structure your response exactly like this to save tokens. Do not add conversational filler.
 
 [REASONING]
-Phase 1: <If correct, write exactly "Correct" and absolutely NOTHING else. If incorrect, briefly state the error.>
-Phase 2: <List ONLY the violated rules and a 1-sentence reason. If no rules are violated, write exactly "All strictness rules passed.">
+Phase 1: <If correct, write exactly "Correct". If incorrect, briefly state the error.>
+Phase 2: 
+- Rule 6 Check:
+  Position 1: Prompt asks for "<exact words>". SQL gives "<column>". Match (allowing for valid SQL syntax/aggregations): <Yes/No>
+  Position 2: Prompt asks for "<exact words>". SQL gives "<column>". Match (allowing for valid SQL syntax/aggregations): <Yes/No>
+  Overall Rule 6 Verdict: <Pass/Fail>
+- Other Rules: <List ONLY the violated rules. If no other rules are violated, write exactly "All other rules passed.">
+
 [VERDICT]
 <Respond with strictly "PASS" or "FAIL: [reason]">"""
 
