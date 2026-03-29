@@ -80,6 +80,10 @@ select = ["E", "F", "I", "N", "W", "UP"]
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+markers = [
+    "benchmark: Spider dataset accuracy benchmarks (require API key)",
+    "slow: long-running tests (full dataset evaluations)",
+]
 
 [tool.mypy]
 python_version = "3.13"

@@ -13,13 +13,16 @@ class LLMProvider:
     default_model: str
     embedding_model: str = "openai/text-embedding-3-small"
 
-    def chat_model(self, *, temperature:float = 0.3, max_tokens: int = 2048) -> ChatOpenAI:
+    def chat_model(self, *, temperature:float = 0.3, max_tokens: int | None = None) -> ChatOpenAI:
+        from nl2sql_agents.config.settings import MAX_TOKENS
+        if max_tokens is None:
+            max_tokens = MAX_TOKENS
         return ChatOpenAI(
             model = self.default_model,
             api_key = self.api_key,
             base_url = self.base_url,
             temperature=temperature,
-            max_tokens=max_tokens
+            max_completion_tokens=max_tokens
         )
 
     def embeddings_model(self) -> OpenAIEmbeddings:
@@ -57,6 +60,7 @@ CACHE_FILE: str = os.path.join(CACHE_DIR, "schema_cache.json")
 CACHE_TTL_HOURS: int = int(os.getenv("CACHE_TTL_HOURS", "24"))
 
 # Pipleline
+MAX_TOKENS: int = int(os.getenv('MAX_TOKENS', '8192'))
 N_CANDIDATES: int = int(os.getenv('N_CANDIDATES', '3'))
 MAX_RETRIES: int = int(os.getenv('MAX_RETRIES', '2'))
 DISCOVERY_TOP_K: int = int(os.getenv('DISCOVERY_TOP_K', '10'))

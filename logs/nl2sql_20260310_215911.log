@@ -1,0 +1,365 @@
+21:59:11  nl2sql.cli                      INFO   Logging to: /home/toheed/Documents/Projects/NL2SQL/logs/nl2sql_20260310_215911.log
+21:59:16  nl2sql_agents.cache.schema_cache  INFO   Cache HIT for key f3de2dffb745224a
+21:59:16  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent: Keyword prefilter on 4 tables
+21:59:16  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent phase 1: 4 -> 4 tables
+21:59:16  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent phase2: Semantic + FK in parallel on 4 tables
+21:59:16  nl2sql_agents.filters.security_filter  INFO   Security Filter: checking privileges for 4 tables
+21:59:16  nl2sql_agents.filters.security_filter  INFO   SecurityFilter: SQLite mode - all 4 tables pass
+21:59:16  nl2sql_agents.orchestrator.nodes  INFO   SecurityFilterNode: 4 tables approved
+21:59:17  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+21:59:17  nl2sql_agents.agents.discovery.discovery_agent  INFO   Discover Agent: ranked 4 tables, top-5 = ['stadium', 'concert', 'singer_in_concert', 'singer']
+21:59:17  nl2sql_agents.filters.gate      INFO   Gate: Discovery_ranked=4, security_approved=4, accessible=4
+21:59:17  nl2sql_agents.filters.gate      INFO   Gate: top-5 = ['stadium', 'concert', 'singer_in_concert', 'singer']
+21:59:17  nl2sql_agents.orchestrator.nodes  INFO   Gate Passed: 4 tables
+21:59:17  nl2sql_agents.agents.schema_formatter  INFO   SchemaFormatterAgent: formatting 4 tables
+21:59:35  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:35  nl2sql_agents.agents.schema_formatter  INFO   SchemaFormatterAgent: ~174 tokens
+21:59:35  nl2sql_agents.orchestrator.nodes  INFO   Generation Attempt: 1 of 2
+21:59:35  nl2sql_agents.agents.query_generator  INFO   QueryGeneatorAgent: 3 candidates in paralle
+21:59:35  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 2 message history
+21:59:35  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 2 message history
+21:59:35  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 2 message history
+21:59:39  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:39  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:40  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:40  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAggent: 3 candidates ready
+21:59:40  nl2sql_agents.agents.validator.validator_agent  INFO   ValidatorAgent: 3 candidates x 4 checks
+21:59:40  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+21:59:40  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+21:59:40  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+21:59:43  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:43  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:44  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:44  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:44  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:44  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:44  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:50  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:50  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:50  nl2sql_agents.agents.validator.validator_agent  INFO   ValidatorAgent: winner conservative score 3.00
+21:59:50  nl2sql_agents.agents.explainer.explainer_agent  INFO   ExplainerAgent: 3 output taaks in PARALLEL
+21:59:54  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+21:59:56  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.DiscoveryResult from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'DiscoveryResult')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.FormattedSchema from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'FormattedSchema')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.GenerationResult from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'GenerationResult')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.ValidationResult from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'ValidationResult')]
+22:07:41  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.FinalOutput from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'FinalOutput')]
+22:07:41  nl2sql_agents.cache.schema_cache  INFO   Cache HIT for key f3de2dffb745224a
+22:07:41  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent: Keyword prefilter on 4 tables
+22:07:41  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent phase 1: 4 -> 4 tables
+22:07:41  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent phase2: Semantic + FK in parallel on 4 tables
+22:07:41  nl2sql_agents.filters.security_filter  INFO   Security Filter: checking privileges for 4 tables
+22:07:41  nl2sql_agents.filters.security_filter  INFO   SecurityFilter: SQLite mode - all 4 tables pass
+22:07:41  nl2sql_agents.orchestrator.nodes  INFO   SecurityFilterNode: 4 tables approved
+22:07:41  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+22:07:41  nl2sql_agents.agents.discovery.discovery_agent  INFO   Discover Agent: ranked 4 tables, top-5 = ['concert', 'singer_in_concert', 'singer', 'stadium']
+22:07:41  nl2sql_agents.filters.gate      INFO   Gate: Discovery_ranked=4, security_approved=4, accessible=4
+22:07:41  nl2sql_agents.filters.gate      INFO   Gate: top-5 = ['concert', 'singer_in_concert', 'singer', 'stadium']
+22:07:41  nl2sql_agents.orchestrator.nodes  INFO   Gate Passed: 4 tables
+22:07:41  nl2sql_agents.agents.schema_formatter  INFO   SchemaFormatterAgent: formatting 4 tables
+22:07:59  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:07:59  nl2sql_agents.agents.schema_formatter  INFO   SchemaFormatterAgent: ~166 tokens
+22:07:59  nl2sql_agents.orchestrator.nodes  INFO   Generation Attempt: 1 of 2
+22:07:59  nl2sql_agents.agents.query_generator  INFO   QueryGeneatorAgent: 3 candidates in paralle
+22:07:59  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:07:59  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:07:59  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:08:05  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:07  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:07  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:07  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAggent: 3 candidates ready
+22:08:07  nl2sql_agents.agents.validator.validator_agent  INFO   ValidatorAgent: 3 candidates x 4 checks
+22:08:07  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:07  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:07  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:10  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:11  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:11  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:11  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:11  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:12  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:12  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:12  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:13  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:13  nl2sql_agents.agents.validator.validator_agent  WARNING  ValidatorAgent: All Candidates Failed ... Retry Needed
+22:08:13  nl2sql_agents.orchestrator.nodes  WARNING  Retry 1: All Candidates failed. Fix these: 
+[conservative] syntax: 
+[conservative] logic: 
+[conservative] performance: 
+[creative] syntax: 
+[creative] logic: 
+[creative] performance: 
+[rephrased] syntax: 
+[rephrased] logic: 
+[rephrased] performance: 
+22:08:13  nl2sql_agents.orchestrator.nodes  INFO   Generation Attempt: 2 of 2
+22:08:13  nl2sql_agents.agents.query_generator  INFO   QueryGeneatorAgent: 3 candidates in paralle
+22:08:13  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:08:13  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:08:13  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:08:21  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:25  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:34  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:34  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAggent: 3 candidates ready
+22:08:34  nl2sql_agents.agents.validator.validator_agent  INFO   ValidatorAgent: 3 candidates x 4 checks
+22:08:34  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:34  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:34  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:37  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:37  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:38  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:38  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:38  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:38  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:40  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:40  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:42  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:42  nl2sql_agents.agents.validator.validator_agent  WARNING  ValidatorAgent: All Candidates Failed ... Retry Needed
+22:08:42  nl2sql_agents.orchestrator.nodes  WARNING  Retry 2: All Candidates failed. Fix these: 
+[conservative] syntax: 
+[conservative] logic: 
+[conservative] performance: 
+[creative] syntax: 
+[creative] logic: 
+[creative] performance: 
+[rephrased] syntax: 
+[rephrased] logic: 
+[rephrased] performance: 
+22:08:42  nl2sql_agents.orchestrator.nodes  INFO   Generation Attempt: 3 of 2
+22:08:42  nl2sql_agents.agents.query_generator  INFO   QueryGeneatorAgent: 3 candidates in paralle
+22:08:42  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:08:42  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:08:42  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:08:51  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:52  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:54  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:54  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAggent: 3 candidates ready
+22:08:54  nl2sql_agents.agents.validator.validator_agent  INFO   ValidatorAgent: 3 candidates x 4 checks
+22:08:54  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:54  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:54  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:08:56  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:57  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:58  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:58  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:59  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:59  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:59  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:08:59  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:09:00  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:09:00  nl2sql_agents.agents.validator.validator_agent  WARNING  ValidatorAgent: All Candidates Failed ... Retry Needed
+22:09:00  nl2sql_agents.orchestrator.nodes  INFO   SHOULD_RETRY: attempts exceeded but validation not passed
+22:09:00  nl2sql_agents.agents.explainer.explainer_agent  INFO   ExplainerAgent: 3 output taaks in PARALLEL
+22:09:00  nl2sql.cli                      ERROR  Unexpected error
+Traceback (most recent call last):
+  File "/home/toheed/Documents/Projects/NL2SQL/nl2sql_agents/cli.py", line 247, in _interactive
+    await _run_query(query, graph, config, logger)
+  File "/home/toheed/Documents/Projects/NL2SQL/nl2sql_agents/cli.py", line 184, in _run_query
+    final_state = await graph.ainvoke({"user_query": query}, config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/pregel/main.py", line 3184, in ainvoke
+    async for chunk in self.astream(
+    ...<29 lines>...
+            chunks.append(chunk)
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/pregel/main.py", line 2997, in astream
+    async for _ in runner.atick(
+    ...<13 lines>...
+            yield o
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/pregel/_runner.py", line 304, in atick
+    await arun_with_retry(
+    ...<15 lines>...
+    )
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/pregel/_retry.py", line 163, in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/_internal/_runnable.py", line 705, in ainvoke
+    input = await asyncio.create_task(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        step.ainvoke(input, config, **kwargs), context=context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/_internal/_runnable.py", line 473, in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toheed/Documents/Projects/NL2SQL/nl2sql_agents/orchestrator/nodes.py", line 124, in explain_node
+    output = await explainer_agent.explain(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/home/toheed/Documents/Projects/NL2SQL/nl2sql_agents/agents/explainer/explainer_agent.py", line 36, in explain
+    self.explanation.run(candidate.sql, user_query),
+                         ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'sql'
+During task with name 'explain' and id '66d65635-4586-3c0b-0991-b637ec681e09'
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.DiscoveryResult from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'DiscoveryResult')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.TableMetaData from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'TableMetaData')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.FormattedSchema from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'FormattedSchema')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.GenerationResult from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'GenerationResult')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.ValidationResult from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'ValidationResult')]
+22:10:08  langgraph.checkpoint.serde.jsonplus  WARNING  Deserializing unregistered type nl2sql_agents.models.schemas.FinalOutput from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('nl2sql_agents.models.schemas', 'FinalOutput')]
+22:10:08  nl2sql_agents.cache.schema_cache  INFO   Cache HIT for key f3de2dffb745224a
+22:10:08  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent: Keyword prefilter on 4 tables
+22:10:08  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent phase 1: 4 -> 4 tables
+22:10:08  nl2sql_agents.agents.discovery.discovery_agent  INFO   DiscoveryAgent phase2: Semantic + FK in parallel on 4 tables
+22:10:08  nl2sql_agents.filters.security_filter  INFO   Security Filter: checking privileges for 4 tables
+22:10:08  nl2sql_agents.filters.security_filter  INFO   SecurityFilter: SQLite mode - all 4 tables pass
+22:10:08  nl2sql_agents.orchestrator.nodes  INFO   SecurityFilterNode: 4 tables approved
+22:10:36  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+22:10:36  nl2sql_agents.agents.discovery.discovery_agent  INFO   Discover Agent: ranked 4 tables, top-5 = ['concert', 'singer_in_concert', 'singer', 'stadium']
+22:10:36  nl2sql_agents.filters.gate      INFO   Gate: Discovery_ranked=4, security_approved=4, accessible=4
+22:10:36  nl2sql_agents.filters.gate      INFO   Gate: top-5 = ['concert', 'singer_in_concert', 'singer', 'stadium']
+22:10:36  nl2sql_agents.orchestrator.nodes  INFO   Gate Passed: 4 tables
+22:10:36  nl2sql_agents.agents.schema_formatter  INFO   SchemaFormatterAgent: formatting 4 tables
+22:10:56  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:10:56  nl2sql_agents.agents.schema_formatter  INFO   SchemaFormatterAgent: ~171 tokens
+22:10:56  nl2sql_agents.orchestrator.nodes  INFO   Generation Attempt: 1 of 2
+22:10:56  nl2sql_agents.agents.query_generator  INFO   QueryGeneatorAgent: 3 candidates in paralle
+22:10:56  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:10:56  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:10:56  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:11:05  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:07  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:10  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:10  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAggent: 3 candidates ready
+22:11:10  nl2sql_agents.agents.validator.validator_agent  INFO   ValidatorAgent: 3 candidates x 4 checks
+22:11:10  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:10  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:10  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:13  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:13  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:13  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:14  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:14  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:14  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:15  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:15  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:20  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:20  nl2sql_agents.agents.validator.validator_agent  WARNING  ValidatorAgent: All Candidates Failed ... Retry Needed
+22:11:20  nl2sql_agents.orchestrator.nodes  WARNING  Retry 1: All Candidates failed. Fix these: 
+[conservative] syntax: 
+[conservative] logic: 
+[conservative] performance: 
+[creative] syntax: 
+[creative] logic: 
+[creative] performance: 
+[rephrased] syntax: 
+[rephrased] logic: 
+[rephrased] performance: 
+22:11:20  nl2sql_agents.orchestrator.nodes  INFO   Generation Attempt: 2 of 2
+22:11:20  nl2sql_agents.agents.query_generator  INFO   QueryGeneatorAgent: 3 candidates in paralle
+22:11:20  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:11:20  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:11:20  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:11:29  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:31  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:31  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:31  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAggent: 3 candidates ready
+22:11:31  nl2sql_agents.agents.validator.validator_agent  INFO   ValidatorAgent: 3 candidates x 4 checks
+22:11:31  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:31  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:31  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:34  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:34  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:34  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:34  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:34  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:34  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:35  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:35  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:36  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:36  nl2sql_agents.agents.validator.validator_agent  WARNING  ValidatorAgent: All Candidates Failed ... Retry Needed
+22:11:36  nl2sql_agents.orchestrator.nodes  WARNING  Retry 2: All Candidates failed. Fix these: 
+[conservative] syntax: 
+[conservative] performance: 
+[creative] syntax: 
+[creative] logic: 
+[creative] performance: 
+[rephrased] syntax: 
+[rephrased] logic: 
+[rephrased] performance: 
+22:11:36  nl2sql_agents.orchestrator.nodes  INFO   Generation Attempt: 3 of 2
+22:11:36  nl2sql_agents.agents.query_generator  INFO   QueryGeneatorAgent: 3 candidates in paralle
+22:11:36  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:11:36  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:11:36  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAgent: built promtpt with 4 message history
+22:11:43  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:46  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:48  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:48  nl2sql_agents.agents.query_generator  INFO   QueryGeneratorAggent: 3 candidates ready
+22:11:48  nl2sql_agents.agents.validator.validator_agent  INFO   ValidatorAgent: 3 candidates x 4 checks
+22:11:48  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:48  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:48  nl2sql_agents.agents.validator.security_validator  INFO   SecurityAgent: All Security Checks Passed
+22:11:51  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:52  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:52  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:52  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:52  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:52  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:52  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:54  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:54  httpx                           INFO   HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+22:11:54  nl2sql_agents.agents.validator.validator_agent  WARNING  ValidatorAgent: All Candidates Failed ... Retry Needed
+22:11:54  nl2sql_agents.orchestrator.nodes  INFO   SHOULD_RETRY: attempts exceeded but validation not passed
+22:11:54  nl2sql_agents.agents.explainer.explainer_agent  INFO   ExplainerAgent: 3 output taaks in PARALLEL
+22:11:54  nl2sql.cli                      ERROR  Unexpected error
+Traceback (most recent call last):
+  File "/home/toheed/Documents/Projects/NL2SQL/nl2sql_agents/cli.py", line 247, in _interactive
+    await _run_query(query, graph, config, logger)
+  File "/home/toheed/Documents/Projects/NL2SQL/nl2sql_agents/cli.py", line 184, in _run_query
+    final_state = await graph.ainvoke({"user_query": query}, config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/pregel/main.py", line 3184, in ainvoke
+    async for chunk in self.astream(
+    ...<29 lines>...
+            chunks.append(chunk)
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/pregel/main.py", line 2997, in astream
+    async for _ in runner.atick(
+    ...<13 lines>...
+            yield o
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/pregel/_runner.py", line 304, in atick
+    await arun_with_retry(
+    ...<15 lines>...
+    )
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/pregel/_retry.py", line 163, in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/_internal/_runnable.py", line 705, in ainvoke
+    input = await asyncio.create_task(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        step.ainvoke(input, config, **kwargs), context=context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/toheed/Documents/Projects/NL2SQL/.venv/lib/python3.14/site-packages/langgraph/_internal/_runnable.py", line 473, in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toheed/Documents/Projects/NL2SQL/nl2sql_agents/orchestrator/nodes.py", line 124, in explain_node
+    output = await explainer_agent.explain(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/home/toheed/Documents/Projects/NL2SQL/nl2sql_agents/agents/explainer/explainer_agent.py", line 36, in explain
+    self.explanation.run(candidate.sql, user_query),
+                         ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'sql'
+During task with name 'explain' and id '2bede460-0cbe-3796-d355-bc81dfc42a70'

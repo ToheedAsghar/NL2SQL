@@ -31,7 +31,8 @@ class SchemaFormatterAgent(BaseAgent):
         ]
     
     def _table_to_raw_text(self, table: TableMetaData) -> str:
-        lines = [f"TABLE: {table.schema_name}.{table.table_name}"]
+        # Use bare table name for SQLite (schema prefix causes invalid SQL)
+        lines = [f"TABLE: {table.table_name}"]
         if table.comments:
             lines.append(f" COMMENT: {table.comments}")
         

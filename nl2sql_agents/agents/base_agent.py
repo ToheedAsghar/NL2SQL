@@ -15,7 +15,7 @@ import logging
 from abc import ABC, abstractmethod
 from typing import Any
 from langchain_openai import ChatOpenAI
-from nl2sql_agents.config.settings import LLMProvider, PRIMARY_PROVIDER
+from nl2sql_agents.config.settings import LLMProvider, PRIMARY_PROVIDER, MAX_TOKENS
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 
 logger = logging.getLogger(__name__)
@@ -37,14 +37,14 @@ class BaseAgent(ABC):
     def parse_response(self, raw: str) -> Any:
         raise NotImplementedError("Abstract Method ParseResponse not implemented")
     
-    def _get_llm(self, temperature: float=0.3, max_tokens: int = 2048) -> ChatOpenAI:
+    def _get_llm(self, temperature: float=0.3, max_tokens: int = MAX_TOKENS) -> ChatOpenAI:
         return self.provider.chat_model(temperature=temperature, max_tokens=max_tokens)
     
     async def call_llm(
             self,
             messages: list[dict[str, str]],
             temperature: float = 0.3,
-            max_tokens: int = 2048
+            max_tokens: int = MAX_TOKENS
     ) -> str:
         logger.debug(
             "%s -> LLM (model=%s, temp=%.1f, msgs=%d)", self.__class__.__name__, self.model_name, temperature, len(messages)
@@ -69,6 +69,6 @@ class BaseAgent(ABC):
         raw = await self.call_llm(
             messages,
             temperature=kwargs.get("temperature", 0.3),
-            max_tokens=kwargs.get("max_tokens", 2048)
+            max_tokens=kwargs.get("max_tokens", MAX_TOKENS)
         )
         return self.parse_response(raw)
