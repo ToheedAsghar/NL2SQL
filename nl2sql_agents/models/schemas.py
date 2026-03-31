@@ -100,6 +100,7 @@ class ChatMessage(TypedDict):
 # --- Graph State --- #
 
 class GraphState(TypedDict, total=False):
+    db_path: str
     user_query: str
     tables: list[TableMetaData]
 

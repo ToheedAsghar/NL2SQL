@@ -179,14 +179,13 @@ def _print_output(result) -> None:
 
     console.print()
 
-
 # ── Core Runner ──────────────────────────────────────────────────────────────
 
 async def _run_query(query: str, graph, config: dict, logger: logging.Logger) -> None:
     """Invoke the LangGraph pipeline and render results."""
     with console.status("[bold cyan]Agents working…[/bold cyan]", spinner="dots"):
-        final_state = await graph.ainvoke({"user_query": query}, config)
-
+        final_state = await graph.ainvoke(
+            {"user_query": query, "db_path": os.getenv("DB_PATH", "")}, config)
     _print_output(final_state["output"])
 
 

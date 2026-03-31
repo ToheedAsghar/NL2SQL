@@ -17,8 +17,8 @@ logger = logging.getLogger(__name__)
 
 cache = SchemaCache()
 gate_layer = GateLayer()
-connector = DatabaseConnector()
-security_filter=SecurityFilter(connector)
+# connector = DatabaseConnector()
+# security_filter=SecurityFilter(connector)
 
 # --- 5 agents --- # 
 discovery_agent = DiscoveryAgent()
@@ -30,19 +30,26 @@ explainer_agent = ExplainerAgent()
 async def load_schema(state: GraphState) -> dict:
     """Load Tables from cache or Introspect the database"""
 
+    db_path = state.get('db_path', DB_PATH)
+    connector = DatabaseConnector(db_path)
+
     # temporary disabling the cache.
-    # cache.invalidate(DB_PATH)
-    
-    tables = cache.get(DB_PATH)
+    # cache.invalidate(db_path)
+
+    tables = cache.get(db_path)
     
     if tables is None:
         tables = await connector.introspect()
-        cache.set(DB_PATH, tables)
+        cache.set(db_path, tables)
 
     return {"tables": tables, "attempt": 1}
 
 async def security_filter_node(state: GraphState) -> dict:
-    approved = await security_filter.filter(state["tables"])
+    db_path = state.get('db_path', DB_PATH)
+    connector = DatabaseConnector(db_path=db_path)
+    sf = SecurityFilter(connector)
+
+    approved = await sf.filter(state["tables"])
     approved_names = {t.table_name for t in approved}
 
     logger.info("SecurityFilterNode: %d tables approved", len(approved))
