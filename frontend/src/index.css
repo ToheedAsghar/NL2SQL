@@ -1,0 +1,10 @@
+:root {
+  @media (max-width: 1024px) {
+    
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  /* :root { */
+    
+}
